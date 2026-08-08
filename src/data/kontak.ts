@@ -1,17 +1,21 @@
 /**
  * KONTAK — sumber tunggal info kontak & sosial media.
- * GANTI semua nilai dengan data asli saat implementasi penuh.
+ * Data dari CV Alhambra Ferdinando (2026-08-05).
  */
 export const KONTAK = {
   nama: 'Alhambra Ferdinando',
-  role: 'Web Developer',
-  email: '// GANTI: email@example.com',
-  whatsapp: '// GANTI: 628xxxxxxxxxx', // format 62, tanpa + / spasi
-  lokasi: 'Indonesia',
+  namaPendek: 'Alhambra',
+  role: 'Web Developer & IT Student',
+  tagline:
+    'IT student yang membangun website & solusi digital — dari landing page, sistem leads dengan validasi otomatis, hingga automasi bisnis.',
+  email: 'alhambra.nando@gmail.com',
+  whatsapp: '6285129976177', // format 62, tanpa + / spasi
+  lokasi: 'Purworejo, Indonesia',
+  pendidikan: 'S.Kom. (IT) — Universitas Muhammadiyah Purworejo',
   sosmed: {
-    github: '// GANTI: https://github.com/username',
-    linkedin: '// GANTI: https://linkedin.com/in/username',
-    instagram: '// GANTI: https://instagram.com/username',
+    github: 'https://github.com/NanoKeboku',
+    linkedin: 'https://linkedin.com/in/alhambra-ferdinando',
+    portfolioLama: 'https://my-porto-alhambra.vercel.app',
   },
 } as const
 

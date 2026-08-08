@@ -1,18 +1,19 @@
 /**
- * Home — single-page portfolio lengkap (bento grid):
- * hero, statistik, proyek, pengalaman kerja, organisasi, soft skill, hard skill,
- * tools, CTA kontak. Animasi: framer-motion (stagger reveal on scroll).
- * Konten dari CV Alhambra Ferdinando.
+ * Home — single-page portfolio (monokrom hitam soft):
+ * hero (background + center) → specialization → statistik → proyek →
+ * pengalaman → organisasi → soft skill → tech stack → AI tools → CTA.
+ * Animasi: framer-motion. Logo: react-icons.
  */
 import { Link } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
-import type { ReactNode } from 'react'
+import type { ReactNode, ElementType } from 'react'
+import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { KONTAK, waLink } from '../data/kontak'
 import { PROJECTS } from '../data/projects'
-import { SKILLS, TOOLS, SOFT_SKILLS, LANGUAGES } from '../data/skills'
+import { TECH_STACK, TOOLS, SOFT_SKILLS, LANGUAGES } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
 /* ===== Animasi framer-motion ===== */
@@ -41,60 +42,109 @@ const Section = ({ children, id }: { children: ReactNode; id?: string }) => (
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <motion.div variants={item}>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
-      <h2 className="mt-2 text-2xl font-bold md:text-3xl">{title}</h2>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{eyebrow}</p>
+      <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">{title}</h2>
     </motion.div>
   )
 }
 
+/** Chip label dengan logo asli (bukan progress bar). */
+function TechChip({ name, icon: Icon }: { name: string; icon: ElementType }) {
+  return (
+    <div className="flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:border-ink/30 hover:shadow-card-hover">
+      <Icon className="h-4 w-4 shrink-0" aria-hidden />
+      <span className="text-sm font-medium text-ink">{name}</span>
+    </div>
+  )
+}
+
+/* ===== Spesialisasi ===== */
+const SPECIALIZATIONS = [
+  {
+    icon: FaPalette,
+    judul: 'UI/UX Design',
+    deskripsi: 'Wireframe, prototipe, dan design system di Figma — antarmuka yang jelas, konsisten, dan mudah dipakai.',
+  },
+  {
+    icon: FaLaptopCode,
+    judul: 'Web Development',
+    deskripsi: 'Frontend & backend modern: React, TypeScript, Laravel, hingga deploy di Cloudflare Pages.',
+  },
+  {
+    icon: FaPenNib,
+    judul: 'Design Grafis',
+    deskripsi: 'Aset visual, poster, dan konten media sosial dengan Canva, Photoshop, dan After Effects.',
+  },
+]
+
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-16 px-4 py-12 md:px-8 md:py-16">
-      {/* ===== HERO ===== */}
+    <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
+      {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
       <motion.section
         variants={container}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 gap-4 md:grid-cols-3"
+        className="relative overflow-hidden rounded-3xl border border-line bg-surface"
       >
-        <motion.div variants={item} className="md:col-span-2">
-          <BentoCard featured className="flex h-full min-h-80 flex-col justify-between">
-            <div>
-              <div className="flex flex-wrap gap-2">
-                <Badge tone="highlight">IT Student</Badge>
-                <Badge tone="highlight">Web Developer</Badge>
-              </div>
-              <h1 className="mt-5 text-4xl font-bold tracking-tight md:text-5xl">
-                Halo, saya {KONTAK.namaPendek} 👋
-              </h1>
-              <p className="mt-4 max-w-xl text-on-dark/75">{KONTAK.tagline}</p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={waLink('Halo Alhambra, saya tertarik dengan jasa Anda!')}>
-                <Button>💬 Hubungi via WhatsApp</Button>
-              </a>
-              <a href="#proyek">
-                <Button variant="secondary" className="border-on-dark/25 bg-transparent text-on-dark">
-                  Lihat Proyek ↓
-                </Button>
-              </a>
-            </div>
-          </BentoCard>
-        </motion.div>
-
-        <motion.div variants={item}>
-          <BentoCard className="flex h-full min-h-80 flex-col items-center justify-center gap-3 text-center">
-            <div className="flex h-28 w-28 items-center justify-center rounded-3xl bg-accent-soft text-5xl font-bold text-accent">
-              AF
-            </div>
-            <div>
-              <p className="font-semibold">{KONTAK.nama}</p>
-              <p className="text-sm text-muted">{KONTAK.lokasi}</p>
-            </div>
-            <p className="text-xs text-muted/70">Ganti dengan foto profil</p>
-          </BentoCard>
-        </motion.div>
+        <div className="bg-grid absolute inset-0" aria-hidden />
+        <div
+          className="absolute inset-0"
+          aria-hidden
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(28,25,23,0.08), transparent 65%)',
+          }}
+        />
+        <div className="relative flex flex-col items-center px-6 py-20 text-center md:py-28">
+          <motion.p
+            variants={item}
+            className="rounded-full border border-line bg-surface/80 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted"
+          >
+            IT Student &amp; Web Developer
+          </motion.p>
+          <motion.h1
+            variants={item}
+            className="mt-6 text-4xl font-bold tracking-tight md:text-6xl"
+          >
+            {KONTAK.nama}
+          </motion.h1>
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
+          >
+            {KONTAK.tagline}
+          </motion.p>
+          <motion.div variants={item} className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <a href={waLink('Halo Alhambra, saya tertarik dengan jasa Anda!')}>
+              <Button>💬 Hubungi via WhatsApp</Button>
+            </a>
+            <a href="#proyek">
+              <Button variant="secondary">
+                Lihat Proyek <FaArrowRight className="ml-1.5 inline h-3 w-3" />
+              </Button>
+            </a>
+          </motion.div>
+        </div>
       </motion.section>
+
+      {/* ===== SPECIALIZATION ===== */}
+      <Section>
+        <SectionHeader eyebrow="Specialization" title="Apa yang Saya Kerjakan" />
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {SPECIALIZATIONS.map((s) => (
+            <motion.div key={s.judul} variants={item}>
+              <BentoCard className="flex h-full flex-col items-start">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dark-card text-on-dark">
+                  <s.icon className="h-5 w-5" aria-hidden />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold">{s.judul}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{s.deskripsi}</p>
+              </BentoCard>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
       {/* ===== STATISTIK ===== */}
       <Section>
@@ -102,31 +152,31 @@ export default function Home() {
           {[
             { angka: '10+', label: 'Website Dikembangkan' },
             { angka: '2.300+', label: 'Data Leads Dikelola' },
-            { angka: '100+', label: 'Anggota Organisasi Dipimpin' },
-            { angka: '3.55', label: 'IPK (4.00)', sub: 'S.Kom. IT' },
+            { angka: '100+', label: 'Anggota Organisasi' },
+            { angka: '3.55', label: 'IPK (4.00)' },
           ].map((s) => (
             <motion.div key={s.label} variants={item}>
               <BentoCard className="text-center">
-                <p className="text-3xl font-bold text-accent">{s.angka}</p>
+                <p className="text-3xl font-bold tracking-tight text-ink">{s.angka}</p>
                 <p className="mt-1 text-sm text-muted">{s.label}</p>
-                {s.sub && <p className="text-xs text-muted/70">{s.sub}</p>}
               </BentoCard>
             </motion.div>
           ))}
         </div>
       </Section>
 
-      {/* ===== PROYEK (semua) ===== */}
+      {/* ===== PROYEK ===== */}
       <Section id="proyek">
         <SectionHeader eyebrow="Portofolio" title="Proyek" />
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <motion.div key={p.id} variants={item}>
               <BentoCard className="flex h-full flex-col">
-                <div className="flex h-36 items-center justify-center rounded-xl bg-gradient-to-br from-accent-soft to-surface-muted text-4xl">
-                  {p.emoji}
+                <div className="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
+                  <div className="bg-grid absolute h-40 w-full" aria-hidden />
+                  <span className="relative text-5xl">{p.emoji}</span>
                 </div>
-                <h3 className="mt-4 font-semibold leading-snug">{p.judul}</h3>
+                <h3 className="mt-5 text-lg font-semibold leading-snug">{p.judul}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {p.tech.slice(0, 4).map((t) => (
@@ -136,10 +186,10 @@ export default function Home() {
                   ))}
                 </div>
                 {(p.repo || p.url) && (
-                  <div className="mt-4 flex gap-4 border-t border-line pt-3 text-sm font-medium">
+                  <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
                     {p.repo && (
-                      <a href={p.repo} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                        GitHub ↗
+                      <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                        <FaGithub className="h-3.5 w-3.5" /> GitHub
                       </a>
                     )}
                     {p.url && (
@@ -208,13 +258,13 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-2">
           <motion.div variants={item}>
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Soft Skills</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Soft Skills</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {SOFT_SKILLS.map((s) => (
                   <Badge key={s}>{s}</Badge>
                 ))}
               </div>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Bahasa</p>
+              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Bahasa</p>
               <ul className="mt-3 space-y-2 text-sm">
                 {LANGUAGES.map((l) => (
                   <li key={l.nama} className="flex items-center justify-between gap-2">
@@ -228,21 +278,19 @@ export default function Home() {
 
           <motion.div variants={item}>
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Hard Skills</p>
-              <div className="mt-4 space-y-3">
-                {SKILLS.map((s) => (
-                  <div key={s.nama} className="flex items-center gap-3">
-                    <span className="w-6 text-center text-lg">{s.icon}</span>
-                    <span className="w-32 text-sm font-medium">{s.nama}</span>
-                    <div className="flex flex-1 gap-1">
-                      {Array.from({ length: 5 }).map((_, j) => (
-                        <span
-                          key={j}
-                          className={`h-2 flex-1 rounded-full ${j < s.level ? 'bg-accent' : 'bg-line'}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">AI Agents</p>
+              <p className="mt-2 text-sm text-muted">
+                Saya memakai AI agent untuk mempercepat riset, coding, dan otomasi kerja.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {TOOLS.filter((t) => ['Claude', 'Hermes'].includes(t.nama)).map((t) => (
+                  <TechChip key={t.nama} name={t.nama} icon={t.icon} />
+                ))}
+              </div>
+              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Automasi & Produktivitas</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {TOOLS.filter((t) => !['Claude', 'Hermes'].includes(t.nama)).map((t) => (
+                  <TechChip key={t.nama} name={t.nama} icon={t.icon} />
                 ))}
               </div>
             </BentoCard>
@@ -250,16 +298,13 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== TOOLS ===== */}
+      {/* ===== TECH STACK ===== */}
       <Section>
-        <SectionHeader eyebrow="Tools" title="Tools & Produktivitas" />
+        <SectionHeader eyebrow="Tech Stack" title="Tech Stack di Balik Setiap Build" />
         <div className="mt-6 flex flex-wrap gap-3">
-          {TOOLS.map((t) => (
+          {TECH_STACK.map((t) => (
             <motion.div key={t.nama} variants={item}>
-              <div className="flex items-center gap-2 rounded-2xl border border-line bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover">
-                <span className="text-xl">{t.icon}</span>
-                <span className="text-sm font-medium">{t.nama}</span>
-              </div>
+              <TechChip name={t.nama} icon={t.icon} />
             </motion.div>
           ))}
         </div>
@@ -268,9 +313,9 @@ export default function Home() {
       {/* ===== CTA KONTAK ===== */}
       <Section>
         <motion.div variants={item}>
-          <BentoCard featured className="flex flex-col items-center gap-4 py-12 text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">Tertarik bekerja sama?</h2>
-            <p className="max-w-lg text-on-dark/75">
+          <BentoCard featured className="flex flex-col items-center gap-4 py-14 text-center">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Tertarik bekerja sama?</h2>
+            <p className="max-w-lg text-on-dark/70">
               Saya terbuka untuk proyek website, sistem leads, dan automasi bisnis. Mari diskusikan ide Anda.
             </p>
             <div className="mt-2 flex flex-wrap justify-center gap-3">

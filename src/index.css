@@ -25,6 +25,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Cegah horizontal scroll — konten tidak boleh melebihi viewport */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   @apply bg-bg text-ink antialiased;
 }

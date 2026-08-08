@@ -7,7 +7,7 @@
 import { Link } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import type { ReactNode, ElementType } from 'react'
-import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub } from 'react-icons/fa6'
+import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -146,25 +146,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== STATISTIK ===== */}
-      <Section>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[
-            { angka: '10+', label: 'Website Dikembangkan' },
-            { angka: '2.300+', label: 'Data Leads Dikelola' },
-            { angka: '100+', label: 'Anggota Organisasi' },
-            { angka: '3.55', label: 'IPK (4.00)' },
-          ].map((s) => (
-            <motion.div key={s.label} variants={item}>
-              <BentoCard className="text-center">
-                <p className="text-3xl font-bold tracking-tight text-ink">{s.angka}</p>
-                <p className="mt-1 text-sm text-muted">{s.label}</p>
-              </BentoCard>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
       {/* ===== PROYEK ===== */}
       <Section id="proyek">
         <SectionHeader eyebrow="Portofolio" title="Proyek" />
@@ -172,8 +153,8 @@ export default function Home() {
           {PROJECTS.map((p) => (
             <motion.div key={p.id} variants={item}>
               <BentoCard className="flex h-full flex-col">
-                <div className="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
-                  <div className="bg-grid absolute h-40 w-full" aria-hidden />
+                <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
+                  <div className="bg-grid absolute inset-0" aria-hidden />
                   <span className="relative text-5xl">{p.emoji}</span>
                 </div>
                 <h3 className="mt-5 text-lg font-semibold leading-snug">{p.judul}</h3>
@@ -330,6 +311,63 @@ export default function Home() {
             </div>
           </BentoCard>
         </motion.div>
+      </Section>
+
+      {/* ===== MY CONTACT ===== */}
+      <Section>
+        <SectionHeader eyebrow="Contact" title="My Contact" />
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              icon: FaWhatsapp,
+              judul: 'WhatsApp',
+              detail: '+62 851 2997 6177',
+              href: waLink('Halo Alhambra! Saya ingin diskusi proyek.'),
+              label: 'Chat sekarang',
+            },
+            {
+              icon: FaEnvelope,
+              judul: 'Email',
+              detail: KONTAK.email,
+              href: `mailto:${KONTAK.email}`,
+              label: 'Kirim email',
+            },
+            {
+              icon: FaLocationDot,
+              judul: 'Lokasi',
+              detail: KONTAK.lokasi,
+              href: undefined,
+              label: undefined,
+            },
+            {
+              icon: FaGlobe,
+              judul: 'Sosial Media',
+              detail: 'GitHub · LinkedIn',
+              href: KONTAK.sosmed.github,
+              label: 'Lihat profil',
+            },
+          ].map((c) => (
+            <motion.div key={c.judul} variants={item}>
+              <BentoCard className="flex h-full flex-col">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-dark-card text-on-dark">
+                  <c.icon className="h-5 w-5" aria-hidden />
+                </div>
+                <h3 className="mt-4 font-semibold">{c.judul}</h3>
+                <p className="mt-1 flex-1 break-all text-sm text-muted">{c.detail}</p>
+                {c.href && c.label && (
+                  <a
+                    href={c.href}
+                    target={c.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer"
+                    className="mt-3 text-sm font-medium text-accent hover:underline"
+                  >
+                    {c.label} →
+                  </a>
+                )}
+              </BentoCard>
+            </motion.div>
+          ))}
+        </div>
       </Section>
 
       <p className="text-center text-sm text-muted">

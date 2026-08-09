@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import Background3D from '../background/Background3D'
+
+/** Background 3D dimuat lazy (three.js ~600KB dipisah dari bundle utama). */
+const Background3D = lazy(() => import('../background/Background3D'))
 
 /** Menu single-page — semua mengarah ke section di Home (smooth scroll). */
 const NAV = [
@@ -13,11 +15,22 @@ const NAV = [
 
 export default function Layout() {
   const [open, setOpen] = useState(false)
+  const [show3d, setShow3d] = useState(false)
+
+  // Tunda render background 3D agar first paint tidak terblokir bundle three.js
+  useEffect(() => {
+    const id = window.setTimeout(() => setShow3d(true), 400)
+    return () => window.clearTimeout(id)
+  }, [])
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      {/* Latar 3D (fixed di belakang konten) */}
-      <Background3D />
+      {/* Latar 3D (fixed di belakang konten) — dimuat lazy setelah render pertama */}
+      {show3d && (
+        <Suspense fallback={null}>
+          <Background3D />
+        </Suspense>
+      )}
 
       {/* ===== NAVBAR (glass effect) ===== */}
       <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl">

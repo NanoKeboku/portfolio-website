@@ -1,14 +1,14 @@
 /**
  * Project data source — from CV & real development history.
  */
-import moto1 from '../images/moto-1.png'
-import moto2 from '../images/moto-2.png'
-import ebitour1 from '../images/ebitour-1.png'
-import ebitour2 from '../images/ebitour-2.png'
-import leadshub1 from '../images/leadshub.png'
-import leadshub2 from '../images/leadshub 2.png'
-import webBimble1 from '../images/web-bimble.png'
-import webBimble2 from '../images/web-bimble-2.png'
+import moto1 from '../images/moto-1.webp'
+import moto2 from '../images/moto-2.webp'
+import ebitour1 from '../images/ebitour-1.webp'
+import ebitour2 from '../images/ebitour-2.webp'
+import leadshub1 from '../images/leadshub.webp'
+import leadshub2 from '../images/leadshub 2.webp'
+import webBimble1 from '../images/web-bimble.webp'
+import webBimble2 from '../images/web-bimble-2.webp'
 
 export interface Project {
   id: string
@@ -34,7 +34,6 @@ export const PROJECTS: Project[] = [
     kategori: 'web',
     gambar: [moto1, moto2],
     url: 'https://motocomputer.code-project.my.id/',
-    repo: 'https://github.com/NanoKeboku/moto-computer',
     featured: true,
   },
   {
@@ -46,7 +45,6 @@ export const PROJECTS: Project[] = [
     kategori: 'web',
     gambar: [ebitour1, ebitour2],
     url: 'https://travel-umroh-agency.pages.dev/',
-    repo: 'https://github.com/NanoKeboku/travel-umroh-agency',
   },
   {
     id: 'leadhub',

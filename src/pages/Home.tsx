@@ -6,7 +6,7 @@
  */
 import { motion, type Variants } from 'framer-motion'
 import { useState, type ReactNode, type ElementType } from 'react'
-import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa6'
+import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -244,20 +244,6 @@ export default function Home() {
                         </Badge>
                       ))}
                     </div>
-                    {(p.repo || p.url) && (
-                      <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
-                        {p.repo && (
-                          <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
-                            <FaGithub className="h-3.5 w-3.5" /> GitHub
-                          </a>
-                        )}
-                        {p.url && (
-                          <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                            Visit site ↗
-                          </a>
-                        )}
-                      </div>
-                    )}
                   </div>
                 </BentoCard>
               </motion.div>
@@ -373,73 +359,62 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== CTA KONTAK (form) ===== */}
+      {/* ===== GET IN TOUCH ===== */}
       <Section id="contact">
-        <motion.div variants={item}>
-          <BentoCard featured className="flex flex-col items-center gap-4 py-14 text-center">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Get in Touch</h2>
-            <p className="max-w-lg text-on-dark/70">
-              Have a project in mind? Send me a message — I usually reply quickly.
-            </p>
+        <SectionHeader eyebrow="Contact" title="Get in Touch" />
+        <p className="mt-3 max-w-2xl text-muted">
+          Have a project in mind? Send me a message — I usually reply quickly.
+        </p>
 
-            <form onSubmit={kirimEmail} className="mt-4 grid w-full max-w-xl grid-cols-1 gap-3 text-left sm:grid-cols-2">
-              <input
-                type="text"
-                required
-                placeholder="Your Name"
-                value={form.nama}
-                onChange={setField('nama')}
-                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20"
-              />
-              <input
-                type="email"
-                required
-                placeholder="Your Email"
-                value={form.email}
-                onChange={setField('email')}
-                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20"
-              />
-              <input
-                type="text"
-                required
-                placeholder="Subject"
-                value={form.subject}
-                onChange={setField('subject')}
-                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20 sm:col-span-2"
-              />
-              <textarea
-                required
-                rows={5}
-                placeholder="Your Message"
-                value={form.pesan}
-                onChange={setField('pesan')}
-                className="w-full resize-y rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20 sm:col-span-2"
-              />
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-on-dark px-5 py-3 text-sm font-semibold text-ink transition hover:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-dark/40 sm:col-span-2"
-              >
-                Send Message ✉️
-              </button>
-            </form>
-          </BentoCard>
+        {/* Info: email, alamat, response time */}
+        <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          {[
+            { icon: FaEnvelope, label: 'Email', value: KONTAK.email, href: `mailto:${KONTAK.email}` },
+            { icon: FaLocationDot, label: 'Address', value: 'Purworejo, Central Java, Indonesia', href: undefined },
+            { icon: FaClock, label: 'Response Time', value: 'Usually within 24 hours', href: undefined },
+          ].map((c) => {
+            const inner = (
+              <>
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-dark-card text-on-dark">
+                  <c.icon className="h-4 w-4" aria-hidden />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-semibold text-ink">{c.label}</p>
+                  <p className="text-sm text-muted">{c.value}</p>
+                </div>
+              </>
+            )
+            const cls =
+              'flex items-center gap-3 rounded-full border border-line bg-surface px-5 py-3 shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover'
+            return c.href ? (
+              <a key={c.label} href={c.href} className={cls}>
+                {inner}
+              </a>
+            ) : (
+              <div key={c.label} className={cls}>
+                {inner}
+              </div>
+            )
+          })}
         </motion.div>
-      </Section>
 
-      {/* ===== SOCIAL (logo-only, tanpa card) ===== */}
-      <Section>
-        <SectionHeader eyebrow="Find Me" title="My Socials" />
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        {/* Find me online */}
+        <motion.p
+          variants={item}
+          className="mt-10 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted"
+        >
+          Find Me Online
+        </motion.p>
+        <motion.div variants={item} className="mt-4 flex flex-wrap items-center justify-center gap-4">
           {[
             { icon: FaGithub, href: KONTAK.sosmed.github, label: 'GitHub' },
             { icon: FaLinkedin, href: KONTAK.sosmed.linkedin, label: 'LinkedIn' },
             { icon: FaInstagram, href: KONTAK.sosmed.instagram, label: 'Instagram' },
-            { icon: FaEnvelope, href: `mailto:${KONTAK.email}`, label: 'Email' },
           ].map((s) => (
             <a
               key={s.label}
               href={s.href}
-              target={s.href.startsWith('http') ? '_blank' : undefined}
+              target="_blank"
               rel="noreferrer"
               aria-label={s.label}
               className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-ink shadow-card transition hover:-translate-y-1 hover:bg-ink hover:text-on-dark"
@@ -447,6 +422,52 @@ export default function Home() {
               <s.icon className="h-5 w-5" aria-hidden />
             </a>
           ))}
+        </motion.div>
+
+        {/* Form */}
+        <motion.div variants={item} className="mt-10">
+          <BentoCard className="mx-auto max-w-xl">
+            <form onSubmit={kirimEmail} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <input
+                type="text"
+                required
+                placeholder="Your Name"
+                value={form.nama}
+                onChange={setField('nama')}
+                className="w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted focus:border-ink/40 focus:outline-none focus:ring-2 focus:ring-ink/10"
+              />
+              <input
+                type="email"
+                required
+                placeholder="Your Email"
+                value={form.email}
+                onChange={setField('email')}
+                className="w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted focus:border-ink/40 focus:outline-none focus:ring-2 focus:ring-ink/10"
+              />
+              <input
+                type="text"
+                required
+                placeholder="Subject"
+                value={form.subject}
+                onChange={setField('subject')}
+                className="w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted focus:border-ink/40 focus:outline-none focus:ring-2 focus:ring-ink/10 sm:col-span-2"
+              />
+              <textarea
+                required
+                rows={5}
+                placeholder="Your Message"
+                value={form.pesan}
+                onChange={setField('pesan')}
+                className="w-full resize-y rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted focus:border-ink/40 focus:outline-none focus:ring-2 focus:ring-ink/10 sm:col-span-2"
+              />
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 sm:col-span-2"
+              >
+                Send Message ✉️
+              </button>
+            </form>
+          </BentoCard>
         </motion.div>
       </Section>
 

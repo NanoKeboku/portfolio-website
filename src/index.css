@@ -99,6 +99,38 @@ body {
     flex-wrap: wrap;
     justify-content: center;
   }
+  .chip-flow {
+    animation: none;
+    border-color: var(--color-line);
+    background: var(--color-surface);
+  }
+}
+
+/* ===== Flow effect border pada chip logo (tech/tools/productivity) =====
+   Conic-gradient berputar di border chip — kesan energi mengalir.
+   Fallback: browser tanpa @property hanya menampilkan border line statis. */
+@property --flow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.chip-flow {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    conic-gradient(
+      from var(--flow-angle),
+      var(--color-line),
+      rgba(28, 25, 23, 0.45) 12%,
+      var(--color-line) 25%
+    ) border-box;
+  animation: chip-flow-spin 5s linear infinite;
+}
+
+@keyframes chip-flow-spin {
+  to { --flow-angle: 360deg; }
 }
 
 /* Heading font: Cabinet Grotesk Variable (Fontshare) */

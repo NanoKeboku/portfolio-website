@@ -19,11 +19,12 @@ import {
   SiGithub,
   SiFigma,
   SiClaude,
+  SiGooglegemini,
+  SiCursor,
   SiNotion,
   SiTrello,
   SiZapier,
 } from 'react-icons/si'
-import { FaRobot } from 'react-icons/fa6'
 import BrandMark from '../components/ui/BrandMark'
 
 export interface Tech {
@@ -31,7 +32,7 @@ export interface Tech {
   icon: IconType
 }
 
-/** Tech stack — "behind every build". */
+/** Tech stack — "The stack behind every build" (chosen for speed & performance). */
 export const TECH_STACK: Tech[] = [
   { nama: 'React', icon: SiReact },
   { nama: 'TypeScript', icon: SiTypescript },
@@ -48,16 +49,22 @@ export const TECH_STACK: Tech[] = [
   { nama: 'Figma', icon: SiFigma },
 ]
 
-/** Tools — "I use to build faster & smarter" (design, management, automation, AI). */
-export const TOOLS: Tech[] = [
+/** AI tools — "to build faster & smarter" (research, coding, automation). */
+export const TOOLS_BUILD: Tech[] = [
+  { nama: 'Google AI Studio', icon: SiGooglegemini },
+  { nama: 'Cursor', icon: SiCursor },
+  { nama: 'Claude', icon: SiClaude },
+  { nama: 'Lovable', icon: () => createElement(BrandMark, { text: 'L', bg: '#FF6D3D' }) },
+]
+
+/** Productivity — design, management & automation tools. */
+export const PRODUCTIVITY_TOOLS: Tech[] = [
   { nama: 'Canva', icon: () => createElement(BrandMark, { text: 'C', bg: '#00C4CC' }) },
   { nama: 'Photoshop', icon: () => createElement(BrandMark, { text: 'Ps', bg: '#31A8FF' }) },
   { nama: 'After Effects', icon: () => createElement(BrandMark, { text: 'Ae', bg: '#9999FF' }) },
   { nama: 'Notion', icon: SiNotion },
   { nama: 'Trello', icon: SiTrello },
   { nama: 'Zapier', icon: SiZapier },
-  { nama: 'Claude', icon: SiClaude },
-  { nama: 'Hermes', icon: FaRobot },
 ]
 
 export const LANGUAGES: { nama: string; level: string }[] = [

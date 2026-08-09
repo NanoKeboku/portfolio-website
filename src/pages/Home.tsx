@@ -13,7 +13,7 @@ import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { KONTAK, waLink } from '../data/kontak'
 import { PROJECTS } from '../data/projects'
-import { TECH_STACK, TOOLS, LANGUAGES } from '../data/skills'
+import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
 /* ===== Animasi framer-motion ===== */
@@ -48,10 +48,10 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   )
 }
 
-/** Chip label dengan logo asli (bukan progress bar). */
+/** Chip label dengan logo asli + flow effect border (lihat .chip-flow di index.css). */
 function TechChip({ name, icon: Icon }: { name: string; icon: ElementType }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:border-ink/30 hover:shadow-card-hover">
+    <div className="chip-flow flex items-center gap-2.5 rounded-full bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover">
       <Icon className="h-4 w-4 shrink-0" aria-hidden />
       <span className="text-sm font-medium text-ink">{name}</span>
     </div>
@@ -234,50 +234,44 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== SOFT SKILL & BAHASA ===== */}
+      {/* ===== THE STACK BEHIND EVERY BUILD ===== */}
       <Section>
-        <div className="grid gap-4 md:grid-cols-2">
-          <motion.div variants={item}>
-            <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Bahasa</p>
-              <ul className="mt-3 space-y-2 text-sm">
-                {LANGUAGES.map((l) => (
-                  <li key={l.nama} className="flex items-center justify-between gap-2">
-                    <span className="font-medium">{l.nama}</span>
-                    <span className="text-muted">{l.level}</span>
-                  </li>
-                ))}
-              </ul>
-            </BentoCard>
-          </motion.div>
-
-          <motion.div variants={item}>
-            <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">AI Agents</p>
-              <p className="mt-2 text-sm text-muted">
-                Saya memakai AI agent untuk mempercepat riset, coding, dan otomasi kerja.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {TOOLS.filter((t) => ['Claude', 'Hermes'].includes(t.nama)).map((t) => (
-                  <TechChip key={t.nama} name={t.nama} icon={t.icon} />
-                ))}
-              </div>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Automasi & Produktivitas</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {TOOLS.filter((t) => !['Claude', 'Hermes'].includes(t.nama)).map((t) => (
-                  <TechChip key={t.nama} name={t.nama} icon={t.icon} />
-                ))}
-              </div>
-            </BentoCard>
-          </motion.div>
+        <SectionHeader eyebrow="Tech Stack" title="The Stack Behind Every Build" />
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          Every tool below is carefully chosen for speed and performance — fast builds, reliable results.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {TECH_STACK.map((t) => (
+            <motion.div key={t.nama} variants={item}>
+              <TechChip name={t.nama} icon={t.icon} />
+            </motion.div>
+          ))}
         </div>
       </Section>
 
-      {/* ===== TECH STACK ===== */}
+      {/* ===== TOOLS I USE TO BUILD FASTER ===== */}
       <Section>
-        <SectionHeader eyebrow="Tech Stack" title="Tech Stack di Balik Setiap Build" />
+        <SectionHeader eyebrow="Tools" title="Tools I Use to Build Faster & Smarter" />
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          AI-powered tools that accelerate research, coding, and automation.
+        </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          {TECH_STACK.map((t) => (
+          {TOOLS_BUILD.map((t) => (
+            <motion.div key={t.nama} variants={item}>
+              <TechChip name={t.nama} icon={t.icon} />
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ===== PRODUCTIVITY ===== */}
+      <Section>
+        <SectionHeader eyebrow="Productivity" title="Productivity Tools" />
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          Design, management, and automation tools that keep my workflow smooth.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {PRODUCTIVITY_TOOLS.map((t) => (
             <motion.div key={t.nama} variants={item}>
               <TechChip name={t.nama} icon={t.icon} />
             </motion.div>

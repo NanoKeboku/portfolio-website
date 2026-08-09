@@ -7,7 +7,7 @@ import type { ReactNode, ElementType } from 'react'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import { KONTAK } from '../data/kontak'
-import { TECH_STACK, TOOLS, LANGUAGES } from '../data/skills'
+import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS, LANGUAGES } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
 const container: Variants = {
@@ -35,9 +35,10 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   )
 }
 
+/** Chip label dengan logo asli + flow effect border (lihat .chip-flow di index.css). */
 function TechChip({ name, icon: Icon }: { name: string; icon: ElementType }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:border-ink/30 hover:shadow-card-hover">
+    <div className="chip-flow flex items-center gap-2.5 rounded-full bg-surface px-4 py-2.5 shadow-card transition hover:-translate-y-0.5 hover:shadow-card-hover">
       <Icon className="h-4 w-4 shrink-0" aria-hidden />
       <span className="text-sm font-medium text-ink">{name}</span>
     </div>
@@ -165,7 +166,7 @@ export default function About() {
         </div>
       </Section>
 
-      {/* Skills: soft, bahasa, tech stack, tools */}
+      {/* Skills: bahasa, tools build faster, productivity */}
       <Section>
         <SectionHeader eyebrow="Skills" title="Keahlian" />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -185,21 +186,34 @@ export default function About() {
 
           <motion.div variants={item}>
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Tools I Use</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Tools I Use to Build Faster</p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {TOOLS.map((t) => (
+                {TOOLS_BUILD.map((t) => (
                   <TechChip key={t.nama} name={t.nama} icon={t.icon} />
                 ))}
               </div>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Tech Stack</p>
+              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Productivity Tools</p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {TECH_STACK.map((t) => (
+                {PRODUCTIVITY_TOOLS.map((t) => (
                   <TechChip key={t.nama} name={t.nama} icon={t.icon} />
                 ))}
               </div>
             </BentoCard>
           </motion.div>
         </div>
+      </Section>
+
+      {/* The stack behind every build */}
+      <Section>
+        <SectionHeader eyebrow="Tech Stack" title="The Stack Behind Every Build" />
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          Every tool below is carefully chosen for speed and performance — fast builds, reliable results.
+        </p>
+        <motion.div variants={item} className="mt-6 flex flex-wrap gap-3">
+          {TECH_STACK.map((t) => (
+            <TechChip key={t.nama} name={t.nama} icon={t.icon} />
+          ))}
+        </motion.div>
       </Section>
     </div>
   )

@@ -11,8 +11,9 @@ import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import ProjectCarousel from '../components/ui/ProjectCarousel'
+import ComingSoonCard from '../components/ui/ComingSoonCard'
 import { KONTAK, waLink } from '../data/kontak'
-import { PROJECTS, DESIGN_PROJECTS, MOTION_PROJECTS, type Project } from '../data/projects'
+import { PROJECTS } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
@@ -55,38 +56,6 @@ function TechChip({ name, icon: Icon }: { name: string; icon: ElementType }) {
       <Icon className="h-4 w-4 shrink-0" aria-hidden />
       <span className="text-sm font-medium text-ink">{name}</span>
     </div>
-  )
-}
-
-/**
- * Kartu proyek design/motion — foto kiri, judul & deskripsi kanan.
- * Pakai initial/animate langsung (bukan variant parent) supaya tetap muncul
- * saat tab di-toggle (fix bug kartu hilang saat kembali ke Web Dev).
- */
-function DesignRowCard({ p, delay = 0 }: { p: Project; delay?: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: 'easeOut', delay }}
-    >
-      <BentoCard className="flex flex-col overflow-hidden sm:flex-row">
-        <div className="relative h-44 shrink-0 sm:h-auto sm:w-56 md:w-64">
-          <img src={p.gambar?.[0]} alt={p.judul} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-        </div>
-        <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
-          <h3 className="text-lg font-semibold leading-snug">{p.judul}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {p.tech.map((t) => (
-              <Badge key={t} tone="neutral">
-                {t}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </BentoCard>
-    </motion.div>
   )
 }
 
@@ -282,21 +251,17 @@ export default function Home() {
           </div>
         )}
 
-        {/* Design graphic cards (foto kiri, judul & deskripsi kanan) */}
+        {/* Design graphic cards — coming soon */}
         {tab === 'design' && (
           <div key="design" className="mt-6 space-y-4">
-            {DESIGN_PROJECTS.map((p, i) => (
-              <DesignRowCard key={p.id} p={p} delay={i * 0.06} />
-            ))}
+            <ComingSoonCard label="Design Graphic" />
           </div>
         )}
 
-        {/* Motion design cards (layout sama dengan design) */}
+        {/* Motion design cards — coming soon */}
         {tab === 'motion' && (
           <div key="motion" className="mt-6 space-y-4">
-            {MOTION_PROJECTS.map((p, i) => (
-              <DesignRowCard key={p.id} p={p} delay={i * 0.06} />
-            ))}
+            <ComingSoonCard label="Motion Design" />
           </div>
         )}
       </Section>

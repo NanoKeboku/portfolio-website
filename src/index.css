@@ -232,6 +232,46 @@ body {
   transform: scale(1.2) rotate(-4deg);
 }
 
+/* ===== PixelDino (T-Rex ala Chrome) ===== */
+.dino-walk {
+  animation: dino-bob 0.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+.dino-leg-front,
+.dino-leg-back {
+  transform-origin: top center;
+  animation: dino-step 0.8s ease-in-out infinite;
+}
+.dino-leg-back {
+  animation-delay: -0.4s;
+}
+/* Lompat kecil sesekali (pola: jalan-jalan, lompat, jalan) */
+.dino-walk {
+  animation:
+    dino-bob 0.8s ease-in-out infinite,
+    dino-jump 3.2s ease-in-out infinite;
+}
+@keyframes dino-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes dino-step {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(18deg); }
+}
+@keyframes dino-jump {
+  0%, 58%, 100% { transform: translateY(0); }
+  60% { transform: translateY(-18px); }
+  78% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dino-walk,
+  .dino-leg-front,
+  .dino-leg-back {
+    animation: none;
+  }
+}
+
 /* Heading font: Cabinet Grotesk Variable (Fontshare) */
 @layer base {
   h1, h2, h3, h4, h5, h6 {

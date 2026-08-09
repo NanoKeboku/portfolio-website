@@ -157,18 +157,11 @@ export default function Home() {
         <SectionHeader eyebrow="About" title="About Me" />
         <motion.div variants={item}>
           <BentoCard>
-            <div className="space-y-3">
-              <p className="text-sm leading-relaxed text-muted">
-                I am an Information Technology student at Universitas Muhammadiyah Purworejo with a deep
-                interest in technology and multimedia — active in web development, visual branding, and
-                digital content creation.
-              </p>
-              <p className="text-sm leading-relaxed text-muted">
-                My experience spans from teaching (TKJ teacher), designing websites for agency clients, to
-                leading a student organization. I believe the combination of technical skills, design, and
-                communication is the key to digital solutions that truly help businesses.
-              </p>
-            </div>
+            <p className="text-sm leading-relaxed text-muted">
+              I am an Information Technology student at Universitas Muhammadiyah Purworejo with a deep
+              interest in technology and multimedia — active in web development, visual branding, and
+              digital content creation.
+            </p>
           </BentoCard>
         </motion.div>
       </Section>

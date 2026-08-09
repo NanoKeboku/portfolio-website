@@ -212,7 +212,7 @@ export default function Home() {
 
       {/* ===== PROYEK ===== */}
       <Section id="projects">
-        <SectionHeader eyebrow="Portfolio" title="Projects" />
+        <SectionHeader eyebrow="Portfolio" title="Latest  Projects" />
 
         {/* Tab filter: Web Dev / Design Graphic / Motion Design */}
         <motion.div variants={item} className="mt-6 flex flex-wrap gap-2">
@@ -221,11 +221,10 @@ export default function Home() {
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                tab === t.id
-                  ? 'bg-ink text-white shadow-card'
-                  : 'border border-line bg-surface text-muted hover:border-ink/30 hover:text-ink'
-              }`}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${tab === t.id
+                ? 'bg-ink text-white shadow-card'
+                : 'border border-line bg-surface text-muted hover:border-ink/30 hover:text-ink'
+                }`}
             >
               {t.label}
             </button>

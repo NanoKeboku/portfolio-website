@@ -48,13 +48,14 @@ export const PROJECTS: Project[] = [
     emoji: '📊',
   },
   {
-    id: 'localio-wp',
-    judul: '10+ WordPress Websites for Clients',
+    id: 'passerelle-edu',
+    judul: 'Passerelle Edu — Learning Platform',
     deskripsi:
-      'Designed and developed 10+ functional client websites for a digital agency — speed, performance, and on-page SEO optimization; plus 30+ visual assets and a 10+ page design training module.',
-    tech: ['WordPress', 'SEO', 'Canva', 'UI/UX'],
+      'Education & learning platform website built with WordPress and Elementor — modern, responsive landing experience for starting your learning journey.',
+    tech: ['WordPress', 'Elementor'],
     kategori: 'web',
-    emoji: '🌐',
+    emoji: '🎓',
+    url: 'https://passerelle-edu.com/',
   },
 ]
 

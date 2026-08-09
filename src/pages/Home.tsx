@@ -10,6 +10,7 @@ import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaWhatsapp, Fa
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
+import ProjectCarousel from '../components/ui/ProjectCarousel'
 import { KONTAK, waLink } from '../data/kontak'
 import { PROJECTS, DESIGN_PROJECTS, MOTION_PROJECTS, type Project } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
@@ -71,7 +72,7 @@ function DesignRowCard({ p, delay = 0 }: { p: Project; delay?: number }) {
     >
       <BentoCard className="flex flex-col overflow-hidden sm:flex-row">
         <div className="relative h-44 shrink-0 sm:h-auto sm:w-56 md:w-64">
-          <img src={p.gambar} alt={p.judul} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={p.gambar?.[0]} alt={p.judul} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         </div>
         <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
           <h3 className="text-lg font-semibold leading-snug">{p.judul}</h3>
@@ -141,7 +142,7 @@ export default function Home() {
             variants={item}
             className="rounded-full border border-line bg-surface/80 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted"
           >
-            IT Student &amp; Web Developer
+            Visual Designer &amp; Web Developer
           </motion.p>
           <motion.h1
             variants={item}
@@ -231,9 +232,9 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Web dev cards (grid) — initial/animate langsung, bukan variant parent */}
+        {/* Web dev cards (full-width + carousel foto) — initial/animate langsung */}
         {tab === 'web' && (
-          <div key="web" className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div key="web" className="mt-6 flex flex-col gap-6">
             {PROJECTS.map((p, i) => (
               <motion.div
                 key={p.id}
@@ -241,34 +242,40 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.06 }}
               >
-                <BentoCard className="flex h-full flex-col">
-                  <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
-                    <div className="bg-grid absolute inset-0" aria-hidden />
-                    <span className="relative text-5xl">{p.emoji}</span>
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold leading-snug">{p.judul}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.tech.slice(0, 4).map((t) => (
-                      <Badge key={t} tone="neutral">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                  {(p.repo || p.url) && (
-                    <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
-                      {p.repo && (
-                        <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
-                          <FaGithub className="h-3.5 w-3.5" /> GitHub
-                        </a>
-                      )}
-                      {p.url && (
-                        <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                          Visit site ↗
-                        </a>
-                      )}
+                <BentoCard className="flex h-full flex-col overflow-hidden">
+                  {p.gambar && p.gambar.length > 0 ? (
+                    <ProjectCarousel images={p.gambar} alt={p.judul} className="h-64 w-full md:h-80" />
+                  ) : (
+                    <div className="relative flex h-48 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
+                      <div className="bg-grid absolute inset-0" aria-hidden />
+                      <span className="relative text-5xl">{p.emoji}</span>
                     </div>
                   )}
+                  <div className="flex flex-col p-6">
+                    <h3 className="text-xl font-semibold leading-snug">{p.judul}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tech.slice(0, 6).map((t) => (
+                        <Badge key={t} tone="neutral">
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                    {(p.repo || p.url) && (
+                      <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
+                        {p.repo && (
+                          <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                            <FaGithub className="h-3.5 w-3.5" /> GitHub
+                          </a>
+                        )}
+                        {p.url && (
+                          <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                            Visit site ↗
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </BentoCard>
               </motion.div>
             ))}

@@ -1,6 +1,15 @@
 /**
  * Project data source — from CV & real development history.
  */
+import moto1 from '../images/moto-1.png'
+import moto2 from '../images/moto-2.png'
+import ebitour1 from '../images/ebitour-1.png'
+import ebitour2 from '../images/ebitour-2.png'
+import leadshub1 from '../images/leadshub.png'
+import leadshub2 from '../images/leadshub 2.png'
+import webBimble1 from '../images/web-bimble.png'
+import webBimble2 from '../images/web-bimble-2.png'
+
 export interface Project {
   id: string
   judul: string
@@ -8,7 +17,7 @@ export interface Project {
   tech: string[]
   kategori: 'web' | 'design' | 'motion'
   emoji?: string // visual placeholder (real thumbnails coming later)
-  gambar?: string // foto/thumbnail asli (dipakai layout design/motion)
+  gambar?: string[] // foto/thumbnail (bisa lebih dari 1 → slide)
   url?: string
   repo?: string
   featured?: boolean
@@ -23,7 +32,7 @@ export const PROJECTS: Project[] = [
       'Multi-branch IT asset management system: item inventory, stock transfers between branches with full approval workflow (approve/ship/receive/reject), role-based access control, Google login, notifications, activity logs, and data exports — built with Laravel.',
     tech: ['Laravel', 'Tailwind CSS', 'MySQL', 'Cloudflare DNS'],
     kategori: 'web',
-    emoji: '💻',
+    gambar: [moto1, moto2],
     url: 'https://motocomputer.code-project.my.id/',
     repo: 'https://github.com/NanoKeboku/moto-computer',
     featured: true,
@@ -35,7 +44,7 @@ export const PROJECTS: Project[] = [
       'Complete umrah/hajj travel agency website: package & program pages, package search system, content admin panel, and a WhatsApp chatbot for prospective pilgrims.',
     tech: ['React', 'TypeScript', 'Cloudflare Pages', 'D1', 'WhatsApp API'],
     kategori: 'web',
-    emoji: '🕌',
+    gambar: [ebitour1, ebitour2],
     url: 'https://travel-umroh-agency.pages.dev/',
     repo: 'https://github.com/NanoKeboku/travel-umroh-agency',
   },
@@ -46,6 +55,7 @@ export const PROJECTS: Project[] = [
       'Multi-niche lead database platform (2,300+ records) with automated validation via Google Places API — detects open/closed status, ratings, contacts, and websites. Includes admin panel, filters, and WhatsApp integration.',
     tech: ['React 19', 'TypeScript', 'Tailwind v4', 'Cloudflare Pages', 'D1', 'Google Places API'],
     kategori: 'web',
+    gambar: [leadshub1, leadshub2],
     emoji: '📊',
   },
   {
@@ -55,6 +65,7 @@ export const PROJECTS: Project[] = [
       'Education & learning platform website built with WordPress and Elementor — modern, responsive landing experience for starting your learning journey.',
     tech: ['WordPress', 'Elementor'],
     kategori: 'web',
+    gambar: [webBimble1, webBimble2],
     emoji: '🎓',
     url: 'https://passerelle-edu.com/',
   },
@@ -69,7 +80,7 @@ export const DESIGN_PROJECTS: Project[] = [
       'Poster promosi dan konten Instagram untuk agensi — visual konsisten dengan identitas brand, siap cetak dan unggah.',
     tech: ['Canva', 'Photoshop'],
     kategori: 'design',
-    gambar: 'https://picsum.photos/seed/poster-campaign/640/480',
+    gambar: ['https://picsum.photos/seed/poster-campaign/640/480'],
   },
   {
     id: 'msme-publication',
@@ -78,7 +89,7 @@ export const DESIGN_PROJECTS: Project[] = [
       'Materi publikasi UMKM: brosur, katalog produk, dan konten media sosial untuk mendukung promosi usaha kecil.',
     tech: ['Canva', 'Photoshop'],
     kategori: 'design',
-    gambar: 'https://picsum.photos/seed/msme-publication/640/480',
+    gambar: ['https://picsum.photos/seed/msme-publication/640/480'],
   },
   {
     id: 'event-design-portfolio',
@@ -87,7 +98,7 @@ export const DESIGN_PROJECTS: Project[] = [
       'Kumpulan karya desain acara: layout laporan kegiatan, materi publikasi, dan aset visual pendukung event.',
     tech: ['Photoshop', 'After Effects'],
     kategori: 'design',
-    gambar: 'https://picsum.photos/seed/event-design/640/480',
+    gambar: ['https://picsum.photos/seed/event-design/640/480'],
   },
 ]
 
@@ -95,29 +106,11 @@ export const DESIGN_PROJECTS: Project[] = [
 export const MOTION_PROJECTS: Project[] = [
   {
     id: 'motion-logo',
-    judul: 'Logo Animation & Brand Motion',
+    judul: 'Comingsoon',
     deskripsi:
       'Animasi logo dan identitas brand — logo reveal, morphing, dan micro-interaction untuk media digital.',
     tech: ['After Effects', 'Photoshop'],
     kategori: 'motion',
-    gambar: 'https://picsum.photos/seed/motion-logo/640/480',
-  },
-  {
-    id: 'motion-poster',
-    judul: 'Motion Poster & Video Bumper',
-    deskripsi:
-      'Poster bergerak dan bumper video untuk promosi acara serta produk di media sosial.',
-    tech: ['After Effects', 'Canva'],
-    kategori: 'motion',
-    gambar: 'https://picsum.photos/seed/motion-poster/640/480',
-  },
-  {
-    id: 'social-video',
-    judul: 'Social Media Video Content',
-    deskripsi:
-      'Video pendek dan animasi untuk konten Instagram/TikTok — motion graphics, editing, dan caption.',
-    tech: ['After Effects', 'Premiere'],
-    kategori: 'motion',
-    gambar: 'https://picsum.photos/seed/social-video/640/480',
-  },
+    gambar: ['https://picsum.photos/seed/motion-logo/640/480'],
+  }
 ]

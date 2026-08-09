@@ -11,15 +11,15 @@ export interface Experience {
 }
 
 export const PENGALAMAN: Experience[] = [
-  {
-    periode: 'Jul 2026 — Present',
-    peran: 'Vocational IT Teacher (TKJ)',
-    tempat: 'SMK Kristen Penabur Purworejo',
-    poin: [
-      'Teach 10th and 12th-grade students (Computer and Network Engineering) through weekly sessions.',
-      'Design and deliver learning materials on Basic Network Security, K3LH, and Technopreneurship to prepare students for industry standards.',
-    ],
-  },
+  // {
+  //   periode: 'Jul 2026 — Present',
+  //   peran: 'Vocational IT Teacher (TKJ)',
+  //   tempat: 'SMK Kristen Penabur Purworejo',
+  //   poin: [
+  //     'Teach 10th and 12th-grade students (Computer and Network Engineering) through weekly sessions.',
+  //     'Design and deliver learning materials on Basic Network Security, K3LH, and Technopreneurship to prepare students for industry standards.',
+  //   ],
+  // },
   {
     periode: 'May 2026',
     peran: 'Web Designer',
@@ -45,7 +45,7 @@ export const ORGANISASI: Experience[] = [
   {
     periode: 'Jun 2024 — Jun 2025',
     peran: 'President, HIMATEKNO',
-    tempat: 'Information Technology Student Association — UMP',
+    tempat: 'Information Technology Student Association — Universitas Muhammadiyah Purworejo',
     poin: [
       'Led an organization of 100+ members, coordinating 5+ work programs to boost IT students\u2019 competencies.',
       'Increased student engagement by up to 60% compared to the previous year.',

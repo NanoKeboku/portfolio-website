@@ -30,12 +30,6 @@ import {
   SiNotion,
   SiTrello,
   SiZapier,
-  SiFramer,
-  SiThreedotjs,
-  SiVercel,
-  SiSupabase,
-  SiElementor,
-  SiShadcnui,
 } from 'react-icons/si'
 import BrandMark from '../components/ui/BrandMark'
 
@@ -86,10 +80,11 @@ export const PRODUCTIVITY_TOOLS: Tech[] = [
   { nama: 'Canva', icon: () => createElement(BrandMark, { text: 'C', bg: '#00C4CC' }) },
   { nama: 'Photoshop', icon: () => createElement(BrandMark, { text: 'Ps', bg: '#31A8FF' }) },
   { nama: 'After Effects', icon: () => createElement(BrandMark, { text: 'Ae', bg: '#9999FF' }) },
+  { nama: 'CapCut', icon: () => createElement(BrandMark, { text: 'CC', bg: '#000000' }) },
   { nama: 'Notion', icon: SiNotion },
   { nama: 'Trello', icon: SiTrello },
   { nama: 'Zapier', icon: SiZapier },
-  { nama: 'CapCut', icon: () => createElement(BrandMark, { text: 'CC', bg: '#000000' }) },
+]
 ]
 
 export const LANGUAGES: { nama: string; level: string }[] = [

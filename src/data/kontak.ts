@@ -14,7 +14,9 @@ export const KONTAK = {
   pendidikan: 'S.Kom. (IT) — Universitas Muhammadiyah Purworejo',
   sosmed: {
     github: 'https://github.com/NanoKeboku',
-    linkedin: 'https://linkedin.com/in/alhambra-ferdinando',
+    linkedin:
+      'https://www.linkedin.com/in/alhambra-ferdinando-503511286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    instagram: 'https://www.instagram.com/alhambra.arch/',
     portfolioLama: 'https://my-porto-alhambra.vercel.app',
   },
 } as const

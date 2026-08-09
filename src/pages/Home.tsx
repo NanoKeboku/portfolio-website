@@ -6,7 +6,7 @@
  */
 import { motion, type Variants } from 'framer-motion'
 import { useState, type ReactNode, type ElementType } from 'react'
-import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
+import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -88,6 +88,20 @@ type ProjectTab = (typeof PROJECT_TABS)[number]['id']
 
 export default function Home() {
   const [tab, setTab] = useState<ProjectTab>('web')
+  const [form, setForm] = useState({ nama: '', email: '', subject: '', pesan: '' })
+
+  const kirimEmail = (e: React.FormEvent) => {
+    e.preventDefault()
+    const subject = encodeURIComponent(form.subject || `Pesan dari ${form.nama || 'pengunjung'}`)
+    const body = encodeURIComponent(
+      `Nama: ${form.nama}\nEmail: ${form.email}\n\n${form.pesan}`,
+    )
+    window.location.href = `mailto:${KONTAK.email}?subject=${subject}&body=${body}`
+  }
+
+  const setField = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [key]: e.target.value }))
+
   return (
     <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
       {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
@@ -126,8 +140,8 @@ export default function Home() {
             {KONTAK.tagline}
           </motion.p>
           <motion.div variants={item} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a href={waLink('Hello Alhambra, I am interested in your services!')}>
-              <Button>💬 Chat on WhatsApp</Button>
+            <a href="#contact">
+              <Button>Get in Touch</Button>
             </a>
             <a href="#projects">
               <Button variant="secondary">
@@ -359,83 +373,81 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== CTA KONTAK ===== */}
-      <Section>
+      {/* ===== CTA KONTAK (form) ===== */}
+      <Section id="contact">
         <motion.div variants={item}>
           <BentoCard featured className="flex flex-col items-center gap-4 py-14 text-center">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Interested in working together?</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Get in Touch</h2>
             <p className="max-w-lg text-on-dark/70">
-              I am open to website projects, lead systems, and business automation. Let&apos;s discuss your ideas.
+              Have a project in mind? Send me a message — I usually reply quickly.
             </p>
-            <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <a href={waLink('Hello Alhambra, I would like to discuss a project.')}>
-                <Button>💬 Chat on WhatsApp</Button>
-              </a>
-              <a href={`mailto:${KONTAK.email}`}>
-                <Button variant="secondary" className="border-on-dark/25 bg-transparent text-on-dark">
-                  ✉️ Send Email
-                </Button>
-              </a>
-            </div>
+
+            <form onSubmit={kirimEmail} className="mt-4 grid w-full max-w-xl grid-cols-1 gap-3 text-left sm:grid-cols-2">
+              <input
+                type="text"
+                required
+                placeholder="Your Name"
+                value={form.nama}
+                onChange={setField('nama')}
+                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20"
+              />
+              <input
+                type="email"
+                required
+                placeholder="Your Email"
+                value={form.email}
+                onChange={setField('email')}
+                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20"
+              />
+              <input
+                type="text"
+                required
+                placeholder="Subject"
+                value={form.subject}
+                onChange={setField('subject')}
+                className="w-full rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20 sm:col-span-2"
+              />
+              <textarea
+                required
+                rows={5}
+                placeholder="Your Message"
+                value={form.pesan}
+                onChange={setField('pesan')}
+                className="w-full resize-y rounded-xl border border-on-dark/20 bg-white/5 px-4 py-2.5 text-sm text-on-dark placeholder:text-on-dark/40 focus:border-on-dark/40 focus:outline-none focus:ring-2 focus:ring-on-dark/20 sm:col-span-2"
+              />
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-on-dark px-5 py-3 text-sm font-semibold text-ink transition hover:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-dark/40 sm:col-span-2"
+              >
+                Send Message ✉️
+              </button>
+            </form>
           </BentoCard>
         </motion.div>
       </Section>
 
-      {/* ===== MY CONTACT ===== */}
-      <Section id="contact">
-        <SectionHeader eyebrow="Contact" title="My Contact" />
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* ===== SOCIAL (logo-only, tanpa card) ===== */}
+      <Section>
+        <SectionHeader eyebrow="Find Me" title="My Socials" />
+        <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-4">
           {[
-            {
-              icon: FaWhatsapp,
-              judul: 'WhatsApp',
-              detail: '+62 851 2997 6177',
-              href: waLink('Hello Alhambra! I would like to discuss a project.'),
-              label: 'Chat now',
-            },
-            {
-              icon: FaEnvelope,
-              judul: 'Email',
-              detail: KONTAK.email,
-              href: `mailto:${KONTAK.email}`,
-              label: 'Send email',
-            },
-            {
-              icon: FaLocationDot,
-              judul: 'Location',
-              detail: KONTAK.lokasi,
-              href: undefined,
-              label: undefined,
-            },
-            {
-              icon: FaGlobe,
-              judul: 'Social Media',
-              detail: 'GitHub · LinkedIn',
-              href: KONTAK.sosmed.github,
-              label: 'View profile',
-            },
-          ].map((c) => (
-            <motion.div key={c.judul} variants={item}>
-              <BentoCard className="flex h-full flex-col">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-dark-card text-on-dark">
-                  <c.icon className="h-5 w-5" aria-hidden />
-                </div>
-                <h3 className="mt-4 font-semibold">{c.judul}</h3>
-                <p className="mt-1 flex-1 break-all text-sm text-muted">{c.detail}</p>
-                {c.href && c.label && (
-                  <a
-                    href={c.href}
-                    target={c.href.startsWith('http') ? '_blank' : undefined}
-                    rel="noreferrer"
-                    className="mt-3 text-sm font-medium text-accent hover:underline"
-                  >
-                    {c.label} →
-                  </a>
-                )}
-              </BentoCard>
-            </motion.div>
+            { icon: FaGithub, href: KONTAK.sosmed.github, label: 'GitHub' },
+            { icon: FaLinkedin, href: KONTAK.sosmed.linkedin, label: 'LinkedIn' },
+            { icon: FaInstagram, href: KONTAK.sosmed.instagram, label: 'Instagram' },
+            { icon: FaEnvelope, href: `mailto:${KONTAK.email}`, label: 'Email' },
+          ].map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith('http') ? '_blank' : undefined}
+              rel="noreferrer"
+              aria-label={s.label}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-ink shadow-card transition hover:-translate-y-1 hover:bg-ink hover:text-on-dark"
+            >
+              <s.icon className="h-5 w-5" aria-hidden />
+            </a>
           ))}
-        </div>
+        </motion.div>
       </Section>
 
     </div>

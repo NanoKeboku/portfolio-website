@@ -1,6 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
 
 /** Background 3D dimuat lazy (three.js ~600KB dipisah dari bundle utama). */
 const Background3D = lazy(() => import('../background/Background3D'))
@@ -85,31 +84,26 @@ export default function Layout() {
           </button>
         </nav>
 
-        {/* Mobile menu — panel glass, animasi */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="overflow-hidden border-b border-white/40 bg-white/70 backdrop-blur-xl md:hidden"
-            >
-              <nav className="flex flex-col gap-1 px-4 pb-4 pt-1">
-                {NAV.map((n) => (
-                  <a
-                    key={n.to}
-                    href={n.to}
-                    onClick={(e) => scrollToSection(e, n.to)}
-                    className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
-                  >
-                    {n.label}
-                  </a>
-                ))}
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile menu — panel glass, animasi CSS (tanpa Framer Motion exit biar anchor bisa diklik) */}
+        {open && (
+          <div
+            className="overflow-hidden border-b border-white/40 bg-white/70 backdrop-blur-xl md:hidden animate-slide-down"
+            style={{ maxHeight: '500px' }}
+          >
+            <nav className="flex flex-col gap-1 px-4 pb-4 pt-1">
+              {NAV.map((n) => (
+                <a
+                  key={n.to}
+                  href={n.to}
+                  onClick={(e) => scrollToSection(e, n.to)}
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
+                >
+                  {n.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="relative z-10 flex-1">

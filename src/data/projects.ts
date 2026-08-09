@@ -36,6 +36,7 @@ export const PROJECTS: Project[] = [
     tech: ['React', 'TypeScript', 'Cloudflare Pages', 'D1', 'WhatsApp API'],
     kategori: 'web',
     emoji: '🕌',
+    url: 'https://travel-umroh-agency.pages.dev/',
     repo: 'https://github.com/NanoKeboku/travel-umroh-agency',
   },
   {

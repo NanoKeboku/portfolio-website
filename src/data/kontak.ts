@@ -7,7 +7,7 @@ export const KONTAK = {
   namaPendek: 'Alhambra',
   role: 'Web Developer & IT Student',
   tagline:
-    'IT student who builds websites and digital solutions — from landing pages and lead systems with automated validation to business automation.',
+    'From landing pages and lead systems with automated validation to business automation. Simple, scalable, and tailored to your business needs',
   email: 'alhambra.nando@gmail.com',
   whatsapp: '6285129976177', // 62 format, no + or spaces
   lokasi: 'Purworejo, Indonesia',

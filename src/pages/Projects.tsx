@@ -1,5 +1,5 @@
 /**
- * Proyek — grid kartu proyek lengkap dari riwayat pengembangan nyata.
+ * Projects — full project cards grid from real development history.
  */
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
@@ -10,11 +10,11 @@ export default function Projects() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12 md:px-8 md:py-16">
       <Reveal>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Portofolio</p>
-        <h1 className="mt-2 text-3xl font-bold">Proyek</h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Portfolio</p>
+        <h1 className="mt-2 text-3xl font-bold">Projects</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Kumpulan proyek yang saya kembangkan — dari sistem data & validasi, website bisnis, hingga automasi
-          organisasi. Detail kode tersedia di GitHub.
+          A collection of projects I have built — from data & validation systems, business websites, to
+          organization automation. Full code is available on GitHub.
         </p>
       </Reveal>
 
@@ -43,7 +43,7 @@ export default function Projects() {
                   )}
                   {p.url && (
                     <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                      Kunjungi situs ↗
+                      Visit site ↗
                     </a>
                   )}
                 </div>

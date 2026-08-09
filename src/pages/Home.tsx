@@ -63,17 +63,17 @@ const SPECIALIZATIONS = [
   {
     icon: FaPalette,
     judul: 'UI/UX Design',
-    deskripsi: 'Wireframe, prototipe, dan design system di Figma — antarmuka yang jelas, konsisten, dan mudah dipakai.',
+    deskripsi: 'Wireframes, prototypes, and design systems in Figma — clear, consistent, and easy-to-use interfaces.',
   },
   {
     icon: FaLaptopCode,
     judul: 'Web Development',
-    deskripsi: 'Frontend & backend modern: React, TypeScript, Laravel, hingga deploy di Cloudflare Pages.',
+    deskripsi: 'Modern frontend & backend: React, TypeScript, Laravel, all the way to Cloudflare Pages deployment.',
   },
   {
     icon: FaPenNib,
-    judul: 'Design Grafis',
-    deskripsi: 'Aset visual, poster, dan konten media sosial dengan Canva, Photoshop, dan After Effects.',
+    judul: 'Graphic Design',
+    deskripsi: 'Visual assets, posters, and social media content with Canva, Photoshop, and After Effects.',
   },
 ]
 
@@ -116,12 +116,12 @@ export default function Home() {
             {KONTAK.tagline}
           </motion.p>
           <motion.div variants={item} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a href={waLink('Halo Alhambra, saya tertarik dengan jasa Anda!')}>
-              <Button>💬 Hubungi via WhatsApp</Button>
+            <a href={waLink('Hello Alhambra, I am interested in your services!')}>
+              <Button>💬 Chat on WhatsApp</Button>
             </a>
-            <a href="#proyek">
+            <a href="#projects">
               <Button variant="secondary">
-                Lihat Proyek <FaArrowRight className="ml-1.5 inline h-3 w-3" />
+                View Projects <FaArrowRight className="ml-1.5 inline h-3 w-3" />
               </Button>
             </a>
           </motion.div>
@@ -130,7 +130,7 @@ export default function Home() {
 
       {/* ===== SPECIALIZATION ===== */}
       <Section>
-        <SectionHeader eyebrow="Specialization" title="Apa yang Saya Kerjakan" />
+        <SectionHeader eyebrow="Specialization" title="What I Do" />
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
           {SPECIALIZATIONS.map((s) => (
             <motion.div key={s.judul} variants={item}>
@@ -147,8 +147,8 @@ export default function Home() {
       </Section>
 
       {/* ===== PROYEK ===== */}
-      <Section id="proyek">
-        <SectionHeader eyebrow="Portofolio" title="Proyek" />
+      <Section id="projects">
+        <SectionHeader eyebrow="Portfolio" title="Projects" />
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <motion.div key={p.id} variants={item}>
@@ -175,7 +175,7 @@ export default function Home() {
                     )}
                     {p.url && (
                       <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                        Kunjungi situs ↗
+                        Visit site ↗
                       </a>
                     )}
                   </div>
@@ -188,7 +188,7 @@ export default function Home() {
 
       {/* ===== PENGALAMAN KERJA ===== */}
       <Section>
-        <SectionHeader eyebrow="Pengalaman" title="Pengalaman Kerja" />
+        <SectionHeader eyebrow="Experience" title="Work Experience" />
         <div className="mt-6 space-y-4">
           {PENGALAMAN.map((e) => (
             <motion.div key={e.peran} variants={item}>
@@ -213,7 +213,7 @@ export default function Home() {
 
       {/* ===== ORGANISASI ===== */}
       <Section>
-        <SectionHeader eyebrow="Organisasi" title="Kepemimpinan" />
+        <SectionHeader eyebrow="Organization" title="Leadership" />
         <div className="mt-6 space-y-4">
           {ORGANISASI.map((o) => (
             <motion.div key={o.peran} variants={item}>
@@ -283,17 +283,17 @@ export default function Home() {
       <Section>
         <motion.div variants={item}>
           <BentoCard featured className="flex flex-col items-center gap-4 py-14 text-center">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Tertarik bekerja sama?</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Interested in working together?</h2>
             <p className="max-w-lg text-on-dark/70">
-              Saya terbuka untuk proyek website, sistem leads, dan automasi bisnis. Mari diskusikan ide Anda.
+              I am open to website projects, lead systems, and business automation. Let&apos;s discuss your ideas.
             </p>
             <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <a href={waLink('Halo Alhambra, saya ingin diskusi proyek.')}>
-                <Button>💬 Chat WhatsApp</Button>
+              <a href={waLink('Hello Alhambra, I would like to discuss a project.')}>
+                <Button>💬 Chat on WhatsApp</Button>
               </a>
               <a href={`mailto:${KONTAK.email}`}>
                 <Button variant="secondary" className="border-on-dark/25 bg-transparent text-on-dark">
-                  ✉️ Kirim Email
+                  ✉️ Send Email
                 </Button>
               </a>
             </div>
@@ -310,29 +310,29 @@ export default function Home() {
               icon: FaWhatsapp,
               judul: 'WhatsApp',
               detail: '+62 851 2997 6177',
-              href: waLink('Halo Alhambra! Saya ingin diskusi proyek.'),
-              label: 'Chat sekarang',
+              href: waLink('Hello Alhambra! I would like to discuss a project.'),
+              label: 'Chat now',
             },
             {
               icon: FaEnvelope,
               judul: 'Email',
               detail: KONTAK.email,
               href: `mailto:${KONTAK.email}`,
-              label: 'Kirim email',
+              label: 'Send email',
             },
             {
               icon: FaLocationDot,
-              judul: 'Lokasi',
+              judul: 'Location',
               detail: KONTAK.lokasi,
               href: undefined,
               label: undefined,
             },
             {
               icon: FaGlobe,
-              judul: 'Sosial Media',
+              judul: 'Social Media',
               detail: 'GitHub · LinkedIn',
               href: KONTAK.sosmed.github,
-              label: 'Lihat profil',
+              label: 'View profile',
             },
           ].map((c) => (
             <motion.div key={c.judul} variants={item}>
@@ -359,8 +359,8 @@ export default function Home() {
       </Section>
 
       <p className="text-center text-sm text-muted">
-        <Link to="/tentang" className="text-accent hover:underline">
-          Lihat halaman Tentang →
+        <Link to="/about" className="text-accent hover:underline">
+          Visit About page →
         </Link>
       </p>
     </div>

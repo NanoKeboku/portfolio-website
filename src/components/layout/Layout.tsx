@@ -5,9 +5,9 @@ import useScrollToTop from '../../hooks/useScrollToTop'
 
 const NAV = [
   { to: '/', label: 'Home', end: true },
-  { to: '/proyek', label: 'Projects' },
-  { to: '/tentang', label: 'About' },
-  { to: '/kontak', label: 'Contact' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Layout() {

@@ -133,6 +133,89 @@ body {
   to { --flow-angle: 360deg; }
 }
 
+/* ===== Kartu hover gelap (interaktif) =====
+   Default BentoCard: saat hover, background berubah jadi hitam soft,
+   teks/link ikut terang, kartu terangkat, ada efek light sweep menyapu. */
+.card-hover-dark {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.card-hover-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.1) 50%, transparent 65%);
+  transform: translateX(-110%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.card-hover-dark:hover {
+  background-color: var(--color-dark-card);
+  border-color: rgba(245, 245, 244, 0.14);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+.card-hover-dark:hover::after {
+  transform: translateX(110%);
+}
+.card-hover-dark:hover h2,
+.card-hover-dark:hover h3,
+.card-hover-dark:hover h4 {
+  color: var(--color-on-dark);
+}
+.card-hover-dark:hover p,
+.card-hover-dark:hover li {
+  color: rgba(245, 245, 244, 0.82);
+}
+.card-hover-dark:hover .text-muted {
+  color: rgba(245, 245, 244, 0.65);
+}
+.card-hover-dark:hover a {
+  color: var(--color-on-dark);
+}
+.card-hover-dark:hover .border-line,
+.card-hover-dark:hover .border-t {
+  border-color: rgba(245, 245, 244, 0.14);
+}
+.card-hover-dark:hover .bg-dark-card {
+  background-color: #3d3a37; /* kotak ikon tetap kontras di atas card gelap */
+}
+.card-hover-dark:hover .bg-surface-muted {
+  background-color: #33312e;
+}
+.card-hover-dark:hover .bg-accent-soft {
+  background-color: #3d3a37;
+}
+.card-hover-dark:hover .bg-amber-100 {
+  background-color: #4a3a25;
+}
+.card-hover-dark:hover .text-amber-700 {
+  color: #fbbf24;
+}
+/* Tombol di dalam kartu saat card hover gelap */
+.card-hover-dark:hover .rounded-xl.bg-surface {
+  background-color: rgba(245, 245, 244, 0.1);
+  color: var(--color-on-dark);
+  border-color: rgba(245, 245, 244, 0.2);
+}
+.card-hover-dark:hover .bg-accent {
+  background-color: var(--color-on-dark);
+  color: var(--color-ink);
+}
+/* Emoji thumbnail proyek — membesar & miring saat card di-hover */
+.card-hover-dark .text-5xl {
+  transition: transform 0.35s ease;
+}
+.card-hover-dark:hover .text-5xl {
+  transform: scale(1.2) rotate(-4deg);
+}
+
 /* Heading font: Cabinet Grotesk Variable (Fontshare) */
 @layer base {
   h1, h2, h3, h4, h5, h6 {

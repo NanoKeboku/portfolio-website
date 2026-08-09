@@ -53,17 +53,17 @@ export default function About() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <motion.div variants={item} className="md:col-span-2">
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Tentang</p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight">Tentang Saya</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">About</p>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight">About Me</h1>
               <p className="mt-4 leading-relaxed text-muted">
-                Saya mahasiswa Information Technology di Universitas Muhammadiyah Purworejo dengan ketertarikan
-                mendalam pada teknologi dan multimedia. Saya senang mengeksplorasi tools, framework, dan tren desain
-                baru — aktif di pengembangan web, visual branding, dan pembuatan konten digital.
+                I am an Information Technology student at Universitas Muhammadiyah Purworejo with a deep
+                interest in technology and multimedia. I enjoy exploring new tools, frameworks, and design
+                trends — actively involved in web development, visual branding, and digital content creation.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
-                Pengalaman saya membentang dari mengajar (guru TKJ), mendesain website untuk klien agensi, hingga
-                memimpin organisasi kemahasiswaan. Saya percaya kombinasi keterampilan teknis, desain, dan komunikasi
-                adalah kunci solusi digital yang benar-benar membantu bisnis.
+                My experience spans from teaching (TKJ teacher), designing websites for agency clients, to
+                leading a student organization. I believe the combination of technical skills, design, and
+                communication is the key to digital solutions that truly help businesses.
               </p>
             </BentoCard>
           </motion.div>
@@ -89,7 +89,7 @@ export default function About() {
 
       {/* Pendidikan */}
       <Section>
-        <SectionHeader eyebrow="Pendidikan" title="Riwayat Pendidikan" />
+        <SectionHeader eyebrow="Education" title="Education" />
         <motion.div variants={item} className="mt-6">
           <BentoCard>
             <div className="flex flex-wrap items-start justify-between gap-2">
@@ -120,7 +120,7 @@ export default function About() {
 
       {/* Pengalaman */}
       <Section>
-        <SectionHeader eyebrow="Pengalaman" title="Pengalaman Kerja" />
+        <SectionHeader eyebrow="Experience" title="Work Experience" />
         <div className="mt-6 space-y-4">
           {PENGALAMAN.map((e) => (
             <motion.div key={e.peran} variants={item}>
@@ -145,7 +145,7 @@ export default function About() {
 
       {/* Organisasi */}
       <Section>
-        <SectionHeader eyebrow="Organisasi" title="Kepemimpinan" />
+        <SectionHeader eyebrow="Organization" title="Leadership" />
         <div className="mt-6 space-y-4">
           {ORGANISASI.map((o) => (
             <motion.div key={o.peran} variants={item}>
@@ -168,11 +168,11 @@ export default function About() {
 
       {/* Skills: bahasa, tools build faster, productivity */}
       <Section>
-        <SectionHeader eyebrow="Skills" title="Keahlian" />
+        <SectionHeader eyebrow="Skills" title="Skills" />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <motion.div variants={item}>
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Bahasa</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Languages</p>
               <ul className="mt-3 space-y-2 text-sm">
                 {LANGUAGES.map((l) => (
                   <li key={l.nama} className="flex items-center justify-between gap-2">

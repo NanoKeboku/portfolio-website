@@ -1,6 +1,6 @@
 /**
- * Sumber data keahlian — dari CV Alhambra Ferdinando.
- * Tech stack & tools ditampilkan sebagai label chips dengan logo asli (react-icons).
+ * Skills & tools data — from Alhambra Ferdinando's CV.
+ * Rendered as label chips with real logos (react-icons).
  */
 import type { IconType } from 'react-icons'
 import { createElement } from 'react'
@@ -48,7 +48,7 @@ export const TECH_STACK: Tech[] = [
   { nama: 'Figma', icon: SiFigma },
 ]
 
-/** Tools — "I use to build faster & smarter" (desain, manajemen, automasi, AI). */
+/** Tools — "I use to build faster & smarter" (design, management, automation, AI). */
 export const TOOLS: Tech[] = [
   { nama: 'Canva', icon: () => createElement(BrandMark, { text: 'C', bg: '#00C4CC' }) },
   { nama: 'Photoshop', icon: () => createElement(BrandMark, { text: 'Ps', bg: '#31A8FF' }) },
@@ -60,15 +60,8 @@ export const TOOLS: Tech[] = [
   { nama: 'Hermes', icon: FaRobot },
 ]
 
-export const SOFT_SKILLS: string[] = [
-  'Public Speaking',
-  'Problem Solving',
-  'Adaptability',
-  'Leadership & Team Management',
-]
-
 export const LANGUAGES: { nama: string; level: string }[] = [
-  { nama: 'Indonesia', level: 'Native' },
-  { nama: 'Inggris', level: 'Basic (reading, writing, speaking)' },
-  { nama: 'Jepang', level: 'Basic (daily conversation)' },
+  { nama: 'Indonesian', level: 'Native' },
+  { nama: 'English', level: 'Basic (reading, writing, speaking)' },
+  { nama: 'Japanese', level: 'Basic (daily conversation)' },
 ]

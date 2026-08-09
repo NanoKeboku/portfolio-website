@@ -13,7 +13,7 @@ import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { KONTAK, waLink } from '../data/kontak'
 import { PROJECTS } from '../data/projects'
-import { TECH_STACK, TOOLS, SOFT_SKILLS, LANGUAGES } from '../data/skills'
+import { TECH_STACK, TOOLS, LANGUAGES } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
 /* ===== Animasi framer-motion ===== */
@@ -239,13 +239,7 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-2">
           <motion.div variants={item}>
             <BentoCard className="h-full">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Soft Skills</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {SOFT_SKILLS.map((s) => (
-                  <Badge key={s}>{s}</Badge>
-                ))}
-              </div>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Bahasa</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Bahasa</p>
               <ul className="mt-3 space-y-2 text-sm">
                 {LANGUAGES.map((l) => (
                   <li key={l.nama} className="flex items-center justify-between gap-2">

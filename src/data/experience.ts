@@ -1,6 +1,6 @@
 /**
- * Sumber data pengalaman & organisasi — dari CV Alhambra Ferdinando.
- * Dipakai oleh halaman Home (single-page) & About.
+ * Experience & organization data — from Alhambra Ferdinando's CV.
+ * Shared by Home (single-page) & About.
  */
 export interface Experience {
   periode: string
@@ -12,31 +12,31 @@ export interface Experience {
 
 export const PENGALAMAN: Experience[] = [
   {
-    periode: 'Jul 2026 — Sekarang',
-    peran: 'Guru Produktif TKJ (IT Teacher)',
+    periode: 'Jul 2026 — Present',
+    peran: 'Vocational IT Teacher (TKJ)',
     tempat: 'SMK Kristen Penabur Purworejo',
     poin: [
-      'Mengajar siswa kelas 10 & 12 (Teknik Komputer dan Jaringan) secara mingguan.',
-      'Menyusun materi ajar Keamanan Jaringan Dasar, K3LH, dan Technopreneurship sesuai standar industri.',
+      'Teach 10th and 12th-grade students (Computer and Network Engineering) through weekly sessions.',
+      'Design and deliver learning materials on Basic Network Security, K3LH, and Technopreneurship to prepare students for industry standards.',
     ],
   },
   {
-    periode: 'Mei 2026',
+    periode: 'May 2026',
     peran: 'Web Designer',
-    tempat: 'Localio Digital Agency — Cilacap, Jawa Tengah',
+    tempat: 'Localio Digital Agency — Cilacap, Central Java',
     poin: [
-      'Merancang & mengembangkan 10+ website fungsional (WordPress); optimasi kecepatan, performa, dan SEO on-page.',
-      'Membuat modul pelatihan 10+ halaman (prinsip keterbacaan, struktur informasi, efisiensi desain).',
-      'Memproduksi 30+ aset visual: poster promosi internal & konten Instagram klien.',
+      'Designed and developed 10+ functional WordPress websites, optimizing speed, performance, and on-page SEO.',
+      'Built a 10+ page training module covering readability principles, information structure, and design efficiency.',
+      'Produced 30+ visual assets: internal agency promo posters and client Instagram content.',
     ],
   },
   {
-    periode: 'Okt — Nov 2025',
-    peran: 'Event Organizer (Magang, WFH)',
+    periode: 'Oct — Nov 2025',
+    peran: 'Event Organizer Intern (WFH)',
     tempat: 'Edukarya',
     poin: [
-      'Memastikan seluruh peserta menyelesaikan tugas: portfolio desain, laporan, dan materi publikasi UMKM.',
-      'Mengelola alur kerja, memantau progres harian, dan membimbing peserta mencapai standar desain berkualitas.',
+      'Ensured all participants completed their tasks: design portfolios, reports, and MSME publication materials.',
+      'Managed workflows, monitored daily progress, and guided participants toward high-quality design standards.',
     ],
   },
 ]
@@ -44,12 +44,12 @@ export const PENGALAMAN: Experience[] = [
 export const ORGANISASI: Experience[] = [
   {
     periode: 'Jun 2024 — Jun 2025',
-    peran: 'Presiden HIMATEKNO',
+    peran: 'President, HIMATEKNO',
     tempat: 'Information Technology Student Association — UMP',
     poin: [
-      'Memimpin organisasi 100+ anggota dan mengoordinasikan 5+ program kerja pengembangan kompetensi.',
-      'Meningkatkan keterlibatan mahasiswa hingga 60% dibanding tahun sebelumnya.',
-      'Memperluas jejaring dengan bergabung ke Permikomnas — kolaborasi nasional dengan 10+ universitas se-Indonesia.',
+      'Led an organization of 100+ members, coordinating 5+ work programs to boost IT students\u2019 competencies.',
+      'Increased student engagement by up to 60% compared to the previous year.',
+      'Expanded the network by joining Permikomnas — national collaboration with 10+ universities across Indonesia.',
     ],
     featured: true,
   },

@@ -85,7 +85,6 @@ export const PRODUCTIVITY_TOOLS: Tech[] = [
   { nama: 'Trello', icon: SiTrello },
   { nama: 'Zapier', icon: SiZapier },
 ]
-]
 
 export const LANGUAGES: { nama: string; level: string }[] = [
   { nama: 'Indonesian', level: 'Native' },

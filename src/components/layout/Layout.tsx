@@ -96,21 +96,15 @@ export default function Layout() {
               className="overflow-hidden border-b border-white/40 bg-white/70 backdrop-blur-xl md:hidden"
             >
               <nav className="flex flex-col gap-1 px-4 pb-4 pt-1">
-                {NAV.map((n, i) => (
-                  <motion.div
+                {NAV.map((n) => (
+                  <a
                     key={n.to}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i, duration: 0.2 }}
+                    href={n.to}
+                    onClick={(e) => scrollToSection(e, n.to)}
+                    className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
                   >
-                    <a
-                      href={n.to}
-                      onClick={(e) => scrollToSection(e, n.to)}
-                      className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
-                    >
-                      {n.label}
-                    </a>
-                  </motion.div>
+                    {n.label}
+                  </a>
                 ))}
               </nav>
             </motion.div>

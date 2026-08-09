@@ -5,13 +5,13 @@
  * Animasi: framer-motion. Logo: react-icons.
  */
 import { motion, type Variants } from 'framer-motion'
-import type { ReactNode, ElementType } from 'react'
+import { useState, type ReactNode, type ElementType } from 'react'
 import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { KONTAK, waLink } from '../data/kontak'
-import { PROJECTS } from '../data/projects'
+import { PROJECTS, DESIGN_PROJECTS } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
@@ -76,7 +76,16 @@ const SPECIALIZATIONS = [
   },
 ]
 
+/* ===== Tab filter proyek ===== */
+const PROJECT_TABS = [
+  { id: 'all', label: 'All' },
+  { id: 'web', label: 'Web Dev' },
+  { id: 'design', label: 'Design Graphic' },
+] as const
+type ProjectTab = (typeof PROJECT_TABS)[number]['id']
+
 export default function Home() {
+  const [tab, setTab] = useState<ProjectTab>('all')
   return (
     <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
       {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
@@ -173,41 +182,94 @@ export default function Home() {
       {/* ===== PROYEK ===== */}
       <Section id="projects">
         <SectionHeader eyebrow="Portfolio" title="Projects" />
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {PROJECTS.map((p) => (
-            <motion.div key={p.id} variants={item}>
-              <BentoCard className="flex h-full flex-col">
-                <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
-                  <div className="bg-grid absolute inset-0" aria-hidden />
-                  <span className="relative text-5xl">{p.emoji}</span>
-                </div>
-                <h3 className="mt-5 text-lg font-semibold leading-snug">{p.judul}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tech.slice(0, 4).map((t) => (
-                    <Badge key={t} tone="neutral">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-                {(p.repo || p.url) && (
-                  <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
-                    {p.repo && (
-                      <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
-                        <FaGithub className="h-3.5 w-3.5" /> GitHub
-                      </a>
-                    )}
-                    {p.url && (
-                      <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                        Visit site ↗
-                      </a>
-                    )}
-                  </div>
-                )}
-              </BentoCard>
-            </motion.div>
+
+        {/* Tab filter: All / Web Dev / Design Graphic */}
+        <motion.div variants={item} className="mt-6 flex flex-wrap gap-2">
+          {PROJECT_TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setTab(t.id)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                tab === t.id
+                  ? 'bg-ink text-white shadow-card'
+                  : 'border border-line bg-surface text-muted hover:border-ink/30 hover:text-ink'
+              }`}
+            >
+              {t.label}
+            </button>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Web dev cards (grid) */}
+        {(tab === 'all' || tab === 'web') && (
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {PROJECTS.map((p) => (
+              <motion.div key={p.id} variants={item}>
+                <BentoCard className="flex h-full flex-col">
+                  <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
+                    <div className="bg-grid absolute inset-0" aria-hidden />
+                    <span className="relative text-5xl">{p.emoji}</span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold leading-snug">{p.judul}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.tech.slice(0, 4).map((t) => (
+                      <Badge key={t} tone="neutral">
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+                  {(p.repo || p.url) && (
+                    <div className="mt-5 flex gap-4 border-t border-line pt-4 text-sm font-medium">
+                      {p.repo && (
+                        <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                          <FaGithub className="h-3.5 w-3.5" /> GitHub
+                        </a>
+                      )}
+                      {p.url && (
+                        <a href={p.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                          Visit site ↗
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </BentoCard>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Design graphic cards (foto kiri, judul & deskripsi kanan) */}
+        {(tab === 'all' || tab === 'design') && (
+          <div className="mt-6 space-y-4">
+            {DESIGN_PROJECTS.map((p) => (
+              <motion.div key={p.id} variants={item}>
+                <BentoCard className="flex flex-col overflow-hidden sm:flex-row">
+                  <div className="relative h-44 shrink-0 sm:h-auto sm:w-56 md:w-64">
+                    <img
+                      src={p.gambar}
+                      alt={p.judul}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
+                    <h3 className="text-lg font-semibold leading-snug">{p.judul}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tech.map((t) => (
+                        <Badge key={t} tone="neutral">
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </BentoCard>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </Section>
 
       {/* ===== PENGALAMAN KERJA ===== */}

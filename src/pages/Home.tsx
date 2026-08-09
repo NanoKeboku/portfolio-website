@@ -4,7 +4,6 @@
  * pengalaman → organisasi → soft skill → tech stack → AI tools → CTA.
  * Animasi: framer-motion. Logo: react-icons.
  */
-import { Link } from 'react-router-dom'
 import { motion, type Variants } from 'framer-motion'
 import type { ReactNode, ElementType } from 'react'
 import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
@@ -82,6 +81,7 @@ export default function Home() {
     <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
       {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
       <motion.section
+        id="home"
         variants={container}
         initial="hidden"
         animate="visible"
@@ -127,6 +127,33 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* ===== ABOUT (short bio) ===== */}
+      <Section id="about">
+        <SectionHeader eyebrow="About" title="About Me" />
+        <motion.div variants={item}>
+          <BentoCard className="flex flex-col gap-6 md:flex-row md:items-center">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-dark-card text-4xl font-bold text-on-dark">
+              AF
+            </div>
+            <div className="flex-1 space-y-3">
+              <p className="text-sm leading-relaxed text-muted">
+                I am an Information Technology student at Universitas Muhammadiyah Purworejo with a deep
+                interest in technology and multimedia — active in web development, visual branding, and
+                digital content creation.
+              </p>
+              <p className="text-sm leading-relaxed text-muted">
+                My experience spans from teaching (TKJ teacher), designing websites for agency clients, to
+                leading a student organization. I believe the combination of technical skills, design, and
+                communication is the key to digital solutions that truly help businesses.
+              </p>
+              <a href={waLink('Hello Alhambra! Let\'s talk about your project.')} className="inline-block pt-1">
+                <Button variant="secondary">Let&apos;s Talk</Button>
+              </a>
+            </div>
+          </BentoCard>
+        </motion.div>
+      </Section>
 
       {/* ===== SPECIALIZATION ===== */}
       <Section>
@@ -302,7 +329,7 @@ export default function Home() {
       </Section>
 
       {/* ===== MY CONTACT ===== */}
-      <Section>
+      <Section id="contact">
         <SectionHeader eyebrow="Contact" title="My Contact" />
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -359,9 +386,9 @@ export default function Home() {
       </Section>
 
       <p className="text-center text-sm text-muted">
-        <Link to="/about" className="text-accent hover:underline">
-          Visit About page →
-        </Link>
+        <a href="#about" className="text-accent hover:underline">
+          More about me →
+        </a>
       </p>
     </div>
   )

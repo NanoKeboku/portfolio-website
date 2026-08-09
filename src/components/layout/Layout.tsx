@@ -1,17 +1,16 @@
 import { useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import useScrollToTop from '../../hooks/useScrollToTop'
 
+/** Menu single-page — semua mengarah ke section di Home (smooth scroll). */
 const NAV = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/projects', label: 'Projects' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
+  { to: '#home', label: 'Home' },
+  { to: '#projects', label: 'Projects' },
+  { to: '#about', label: 'About' },
+  { to: '#contact', label: 'Contact' },
 ]
 
 export default function Layout() {
-  useScrollToTop()
   const [open, setOpen] = useState(false)
 
   return (
@@ -23,21 +22,16 @@ export default function Layout() {
             Alhambra<span className="text-accent">.</span>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — anchor scroll ke section Home */}
           <div className="hidden items-center gap-1 md:flex md:gap-2">
             {NAV.map((n) => (
-              <NavLink
+              <a
                 key={n.to}
-                to={n.to}
-                end={n.end}
-                className={({ isActive }) =>
-                  `rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-                    isActive ? 'bg-ink text-white' : 'text-muted hover:bg-black/5 hover:text-ink'
-                  }`
-                }
+                href={n.to}
+                className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
               >
                 {n.label}
-              </NavLink>
+              </a>
             ))}
           </div>
 
@@ -87,18 +81,13 @@ export default function Layout() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 * i, duration: 0.2 }}
                   >
-                    <NavLink
-                      to={n.to}
-                      end={n.end}
+                    <a
+                      href={n.to}
                       onClick={() => setOpen(false)}
-                      className={({ isActive }) =>
-                        `block rounded-xl px-4 py-3 text-sm font-medium transition ${
-                          isActive ? 'bg-ink text-white' : 'text-muted hover:bg-black/5 hover:text-ink'
-                        }`
-                      }
+                      className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
                     >
                       {n.label}
-                    </NavLink>
+                    </a>
                   </motion.div>
                 ))}
               </nav>

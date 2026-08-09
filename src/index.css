@@ -39,6 +39,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor scroll — kompensasi navbar sticky */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 /* Cegah horizontal scroll — konten tidak boleh melebihi viewport */
 html,
 body {

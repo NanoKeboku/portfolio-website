@@ -44,12 +44,12 @@ export const PENGALAMAN: Experience[] = [
 export const ORGANISASI: Experience[] = [
   {
     periode: 'Jun 2024 — Jun 2025',
-    peran: 'President, HIMATEKNO',
+    peran: 'Chairperson, HIMATEKNO',
     tempat: 'Information Technology Student Association — Universitas Muhammadiyah Purworejo',
     poin: [
-      'Led an organization of 100+ members, coordinating 5+ work programs to boost IT students\u2019 competencies.',
-      'Increased student engagement by up to 60% compared to the previous year.',
-      'Expanded the network by joining Permikomnas — national collaboration with 10+ universities across Central Java.',
+      'Led and coordinated 5 division heads and 30 organizational members in executing programs and organizational initiatives.',
+      'Set organizational direction, priorities, and strategic objectives.',
+      'Evaluated program performance and coordinated improvements across divisions.',
     ],
     featured: true,
   },

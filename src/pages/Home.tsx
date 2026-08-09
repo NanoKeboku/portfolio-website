@@ -12,7 +12,7 @@ import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import ProjectCarousel from '../components/ui/ProjectCarousel'
 import ComingSoonCard from '../components/ui/ComingSoonCard'
-import { KONTAK, waLink } from '../data/kontak'
+import { KONTAK } from '../data/kontak'
 import { PROJECTS } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
@@ -40,10 +40,10 @@ const Section = ({ children, id }: { children: ReactNode; id?: string }) => (
   </motion.section>
 )
 
-function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionHeader({ eyebrow, title }: { eyebrow?: string; title: string }) {
   return (
     <motion.div variants={item}>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{eyebrow}</p>
+      {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{eyebrow}</p>}
       <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">{title}</h2>
     </motion.div>
   )
@@ -164,13 +164,10 @@ export default function Home() {
                 digital content creation.
               </p>
               <p className="text-sm leading-relaxed text-muted">
-                My experience designing websites for agency clients, to
+                My experience spans from teaching (TKJ teacher), designing websites for agency clients, to
                 leading a student organization. I believe the combination of technical skills, design, and
                 communication is the key to digital solutions that truly help businesses.
               </p>
-              <a href={waLink('Hello Alhambra! Let\'s talk about your project.')} className="inline-block pt-1">
-                <Button variant="secondary">Let&apos;s Talk</Button>
-              </a>
             </div>
           </BentoCard>
         </motion.div>
@@ -244,6 +241,20 @@ export default function Home() {
                         </Badge>
                       ))}
                     </div>
+                    {(p.repo || p.url) && (
+                      <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-line pt-4">
+                        {p.url && (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+                          >
+                            Visit Site ↗
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </BentoCard>
               </motion.div>
@@ -293,7 +304,7 @@ export default function Home() {
 
       {/* ===== ORGANISASI ===== */}
       <Section>
-        <SectionHeader eyebrow="Organization" title="Leadership" />
+        <SectionHeader title="Organization" />
         <div className="mt-6 space-y-4">
           {ORGANISASI.map((o) => (
             <motion.div key={o.peran} variants={item}>

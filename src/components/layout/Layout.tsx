@@ -23,6 +23,13 @@ export default function Layout() {
     return () => window.clearTimeout(id)
   }, [])
 
+  /** Scroll halus ke section + tutup menu (fix: anchor tidak bisa diklik di mobile). */
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    e.preventDefault()
+    setOpen(false)
+    document.querySelector(to)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className="relative flex min-h-screen flex-col">
       {/* Latar 3D (fixed di belakang konten) — dimuat lazy setelah render pertama */}
@@ -45,6 +52,7 @@ export default function Layout() {
               <a
                 key={n.to}
                 href={n.to}
+                onClick={(e) => scrollToSection(e, n.to)}
                 className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
               >
                 {n.label}
@@ -97,7 +105,7 @@ export default function Layout() {
                   >
                     <a
                       href={n.to}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => scrollToSection(e, n.to)}
                       className="block rounded-xl px-4 py-3 text-sm font-medium text-muted transition hover:bg-black/5 hover:text-ink"
                     >
                       {n.label}

@@ -18,12 +18,24 @@ import {
   SiGit,
   SiGithub,
   SiFigma,
+  SiFramer,
+  SiThreedotjs,
+  SiVercel,
+  SiSupabase,
+  SiElementor,
+  SiShadcnui,
   SiClaude,
   SiGooglegemini,
   SiCursor,
   SiNotion,
   SiTrello,
   SiZapier,
+  SiFramer,
+  SiThreedotjs,
+  SiVercel,
+  SiSupabase,
+  SiElementor,
+  SiShadcnui,
 } from 'react-icons/si'
 import BrandMark from '../components/ui/BrandMark'
 
@@ -44,9 +56,21 @@ export const TECH_STACK: Tech[] = [
   { nama: 'jQuery', icon: SiJquery },
   { nama: 'MySQL', icon: SiMysql },
   { nama: 'Cloudflare', icon: SiCloudflare },
+  { nama: 'Framer Motion', icon: SiFramer },
+  { nama: 'Three.js', icon: SiThreedotjs },
+  { nama: 'Vercel', icon: SiVercel },
+  { nama: 'Supabase', icon: SiSupabase },
+  { nama: 'Elementor', icon: SiElementor },
+  { nama: 'shadcn/ui', icon: SiShadcnui },
   { nama: 'Git', icon: SiGit },
   { nama: 'GitHub', icon: SiGithub },
   { nama: 'Figma', icon: SiFigma },
+  { nama: 'Framer Motion', icon: SiFramer },
+  { nama: 'Three.js', icon: SiThreedotjs },
+  { nama: 'Vercel', icon: SiVercel },
+  { nama: 'Supabase', icon: SiSupabase },
+  { nama: 'Elementor', icon: SiElementor },
+  { nama: 'shadcn/ui', icon: SiShadcnui },
 ]
 
 /** AI tools — "to build faster & smarter" (research, coding, automation). */
@@ -65,6 +89,7 @@ export const PRODUCTIVITY_TOOLS: Tech[] = [
   { nama: 'Notion', icon: SiNotion },
   { nama: 'Trello', icon: SiTrello },
   { nama: 'Zapier', icon: SiZapier },
+  { nama: 'CapCut', icon: () => createElement(BrandMark, { text: 'CC', bg: '#000000' }) },
 ]
 
 export const LANGUAGES: { nama: string; level: string }[] = [

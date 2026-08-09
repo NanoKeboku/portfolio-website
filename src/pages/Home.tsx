@@ -317,9 +317,10 @@ export default function Home() {
       {/* ===== THE STACK BEHIND EVERY BUILD ===== */}
       <Section>
         <SectionHeader eyebrow="Tech Stack" title="The Stack Behind Every Build" />
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+
+        <motion.p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
           Every tool below is carefully chosen for speed and performance — fast builds, reliable results.
-        </p>
+        </motion.p>
         <div className="mt-6 flex flex-wrap gap-3">
           {TECH_STACK.map((t) => (
             <motion.div key={t.nama} variants={item}>
@@ -332,9 +333,9 @@ export default function Home() {
       {/* ===== TOOLS I USE TO BUILD FASTER ===== */}
       <Section>
         <SectionHeader eyebrow="Tools" title="Tools I Use to Build Faster & Smarter" />
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+        <motion.p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
           AI-powered tools that accelerate research, coding, and automation.
-        </p>
+        </motion.p>
         <div className="mt-6 flex flex-wrap gap-3">
           {TOOLS_BUILD.map((t) => (
             <motion.div key={t.nama} variants={item}>
@@ -347,9 +348,9 @@ export default function Home() {
       {/* ===== PRODUCTIVITY ===== */}
       <Section>
         <SectionHeader eyebrow="Productivity" title="Productivity Tools" />
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+        <motion.p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
           Design, management, and automation tools that keep my workflow smooth.
-        </p>
+        </motion.p>
         <div className="mt-6 flex flex-wrap gap-3">
           {PRODUCTIVITY_TOOLS.map((t) => (
             <motion.div key={t.nama} variants={item}>
@@ -362,9 +363,9 @@ export default function Home() {
       {/* ===== GET IN TOUCH ===== */}
       <Section id="contact">
         <SectionHeader eyebrow="Contact" title="Get in Touch" />
-        <p className="mt-3 max-w-2xl text-muted">
+        <motion.p className="mt-3 max-w-2xl text-muted">
           Have a project in mind? Send me a message — I usually reply quickly.
-        </p>
+        </motion.p>
 
         {/* Info: email, alamat, response time */}
         <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-3">

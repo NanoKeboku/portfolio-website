@@ -59,12 +59,6 @@ export const TECH_STACK: Tech[] = [
   { nama: 'Git', icon: SiGit },
   { nama: 'GitHub', icon: SiGithub },
   { nama: 'Figma', icon: SiFigma },
-  { nama: 'Framer Motion', icon: SiFramer },
-  { nama: 'Three.js', icon: SiThreedotjs },
-  { nama: 'Vercel', icon: SiVercel },
-  { nama: 'Supabase', icon: SiSupabase },
-  { nama: 'Elementor', icon: SiElementor },
-  { nama: 'shadcn/ui', icon: SiShadcnui },
 ]
 
 /** AI tools — "to build faster & smarter" (research, coding, automation). */

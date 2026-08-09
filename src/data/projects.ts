@@ -39,13 +39,12 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/NanoKeboku/travel-umroh-agency',
   },
   {
-    id: 'flowos',
-    judul: 'FlowOS — Organization Operating System',
+    id: 'leadhub',
+    judul: 'LeadsHub — Business Lead Database + AI Validation',
     deskripsi:
-      'Organization operating system built on Google Workspace & Apps Script: project/task/partner management, WhatsApp (Fonnte) integration, Google Calendar/Drive/Gmail, and role-based access control (RBAC).',
-    tech: ['Google Apps Script', 'Google Workspace', 'Fonnte API', 'RBAC'],
-    kategori: 'web',
-    emoji: '⚙️',
+      'Multi-niche lead database platform (2,300+ records) with automated validation via Google Places API — detects open/closed status, ratings, contacts, and websites. Includes admin panel, filters, and WhatsApp integration.',
+    tech: ['React 19', 'TypeScript', 'Tailwind v4', 'Cloudflare Pages', 'D1', 'Google Places API'],
+    emoji: '📊',
   },
   {
     id: 'localio-wp',

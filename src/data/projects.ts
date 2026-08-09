@@ -44,6 +44,7 @@ export const PROJECTS: Project[] = [
     deskripsi:
       'Multi-niche lead database platform (2,300+ records) with automated validation via Google Places API — detects open/closed status, ratings, contacts, and websites. Includes admin panel, filters, and WhatsApp integration.',
     tech: ['React 19', 'TypeScript', 'Tailwind v4', 'Cloudflare Pages', 'D1', 'Google Places API'],
+    kategori: 'web',
     emoji: '📊',
   },
   {

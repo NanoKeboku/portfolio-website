@@ -132,11 +132,8 @@ export default function Home() {
       <Section id="about">
         <SectionHeader eyebrow="About" title="About Me" />
         <motion.div variants={item}>
-          <BentoCard className="flex flex-col gap-6 md:flex-row md:items-center">
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-dark-card text-4xl font-bold text-on-dark">
-              AF
-            </div>
-            <div className="flex-1 space-y-3">
+          <BentoCard>
+            <div className="space-y-3">
               <p className="text-sm leading-relaxed text-muted">
                 I am an Information Technology student at Universitas Muhammadiyah Purworejo with a deep
                 interest in technology and multimedia — active in web development, visual branding, and

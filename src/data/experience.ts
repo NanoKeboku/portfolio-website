@@ -49,7 +49,7 @@ export const ORGANISASI: Experience[] = [
     poin: [
       'Led an organization of 100+ members, coordinating 5+ work programs to boost IT students\u2019 competencies.',
       'Increased student engagement by up to 60% compared to the previous year.',
-      'Expanded the network by joining Permikomnas — national collaboration with 10+ universities across Indonesia.',
+      'Expanded the network by joining Permikomnas — national collaboration with 10+ universities across Central Java.',
     ],
     featured: true,
   },

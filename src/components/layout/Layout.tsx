@@ -45,19 +45,16 @@ export default function Layout() {
           >
             <span className="relative block h-3.5 w-5">
               <span
-                className={`absolute left-0 top-0 h-0.5 w-full rounded-full bg-ink transition-all duration-300 ${
-                  open ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
-                }`}
+                className={`absolute left-0 top-0 h-0.5 w-full rounded-full bg-ink transition-all duration-300 ${open ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
+                  }`}
               />
               <span
-                className={`absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded-full bg-ink transition-all duration-300 ${
-                  open ? 'opacity-0' : ''
-                }`}
+                className={`absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded-full bg-ink transition-all duration-300 ${open ? 'opacity-0' : ''
+                  }`}
               />
               <span
-                className={`absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-ink transition-all duration-300 ${
-                  open ? 'bottom-1/2 translate-y-1/2 -rotate-45' : ''
-                }`}
+                className={`absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-ink transition-all duration-300 ${open ? 'bottom-1/2 translate-y-1/2 -rotate-45' : ''
+                  }`}
               />
             </span>
           </button>
@@ -103,7 +100,7 @@ export default function Layout() {
       <footer className="border-t border-line">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-muted md:flex-row md:px-8">
           <p>© {new Date().getFullYear()} Alhambra Ferdinando</p>
-          <p>Built with React + Tailwind</p>
+          <p>Built with Love 💌</p>
         </div>
       </footer>
     </div>

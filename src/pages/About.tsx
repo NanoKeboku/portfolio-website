@@ -61,7 +61,7 @@ export default function About() {
                 trends — actively involved in web development, visual branding, and digital content creation.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
-                My experience spans from teaching (TKJ teacher), designing websites for agency clients, to
+                My experience designing websites for agency clients, to
                 leading a student organization. I believe the combination of technical skills, design, and
                 communication is the key to digital solutions that truly help businesses.
               </p>

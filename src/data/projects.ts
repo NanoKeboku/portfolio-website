@@ -14,14 +14,14 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'leadhub',
-    judul: 'LeadsHub — Business Lead Database + AI Validation',
+    id: 'moto-computer',
+    judul: 'Moto Computer — IT Asset & Inventory Management',
     deskripsi:
-      'Multi-niche lead database platform (2,300+ records) with automated validation via Google Places API — detects open/closed status, ratings, contacts, and websites. Includes admin panel, filters, and WhatsApp integration.',
-    tech: ['React 19', 'TypeScript', 'Tailwind v4', 'Cloudflare Pages', 'D1', 'Google Places API'],
-    emoji: '📊',
-    url: 'https://travel-agency-leads.pages.dev',
-    repo: 'https://github.com/NanoKeboku/travel-agency-leads',
+      'Multi-branch IT asset management system: item inventory, stock transfers between branches with full approval workflow (approve/ship/receive/reject), role-based access control, Google login, notifications, activity logs, and data exports — built with Laravel.',
+    tech: ['Laravel', 'Tailwind CSS', 'MySQL', 'Cloudflare DNS'],
+    emoji: '💻',
+    url: 'https://motocomputer.code-project.my.id/',
+    repo: 'https://github.com/NanoKeboku/moto-computer',
     featured: true,
   },
   {

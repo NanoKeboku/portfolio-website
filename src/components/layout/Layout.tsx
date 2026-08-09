@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import Background3D from '../background/Background3D'
 
 /** Menu single-page — semua mengarah ke section di Home (smooth scroll). */
 const NAV = [
@@ -14,7 +15,10 @@ export default function Layout() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
+      {/* Latar 3D (fixed di belakang konten) */}
+      <Background3D />
+
       {/* ===== NAVBAR (glass effect) ===== */}
       <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 md:px-8">
@@ -93,11 +97,11 @@ export default function Layout() {
         </AnimatePresence>
       </header>
 
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         <Outlet />
       </main>
 
-      <footer className="border-t border-line">
+      <footer className="relative z-10 border-t border-line">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-muted md:flex-row md:px-8">
           <p>© {new Date().getFullYear()} Alhambra Ferdinando</p>
           <p>Built with Love 💌</p>

@@ -126,9 +126,8 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="relative overflow-hidden rounded-3xl border border-line bg-surface"
+        className="relative overflow-hidden rounded-3xl border border-line bg-surface/70 backdrop-blur-md"
       >
-        <div className="bg-grid absolute inset-0" aria-hidden />
         <div
           className="absolute inset-0"
           aria-hidden

@@ -44,6 +44,17 @@ section[id] {
   scroll-margin-top: 5.5rem;
 }
 
+/* Latar 3D — fixed di belakang konten, tidak menangkap klik */
+#bg3d {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+#bg3d canvas {
+  display: block;
+}
+
 /* Cegah horizontal scroll — konten tidak boleh melebihi viewport */
 html,
 body {

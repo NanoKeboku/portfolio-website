@@ -6,12 +6,12 @@
  */
 import { motion, type Variants } from 'framer-motion'
 import { useState, type ReactNode, type ElementType } from 'react'
-import { FaPalette, FaLaptopCode, FaPenNib, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
+import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaWhatsapp, FaEnvelope, FaLocationDot, FaGlobe } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { KONTAK, waLink } from '../data/kontak'
-import { PROJECTS, DESIGN_PROJECTS } from '../data/projects'
+import { PROJECTS, DESIGN_PROJECTS, MOTION_PROJECTS, type Project } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
 import { PENGALAMAN, ORGANISASI } from '../data/experience'
 
@@ -57,6 +57,38 @@ function TechChip({ name, icon: Icon }: { name: string; icon: ElementType }) {
   )
 }
 
+/**
+ * Kartu proyek design/motion — foto kiri, judul & deskripsi kanan.
+ * Pakai initial/animate langsung (bukan variant parent) supaya tetap muncul
+ * saat tab di-toggle (fix bug kartu hilang saat kembali ke Web Dev).
+ */
+function DesignRowCard({ p, delay = 0 }: { p: Project; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut', delay }}
+    >
+      <BentoCard className="flex flex-col overflow-hidden sm:flex-row">
+        <div className="relative h-44 shrink-0 sm:h-auto sm:w-56 md:w-64">
+          <img src={p.gambar} alt={p.judul} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        </div>
+        <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
+          <h3 className="text-lg font-semibold leading-snug">{p.judul}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {p.tech.map((t) => (
+              <Badge key={t} tone="neutral">
+                {t}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </BentoCard>
+    </motion.div>
+  )
+}
+
 /* ===== Spesialisasi ===== */
 const SPECIALIZATIONS = [
   {
@@ -70,22 +102,22 @@ const SPECIALIZATIONS = [
     deskripsi: 'Modern frontend & backend: React, TypeScript, Laravel, all the way to Cloudflare Pages deployment.',
   },
   {
-    icon: FaPenNib,
-    judul: 'Graphic Design',
-    deskripsi: 'Visual assets, posters, and social media content with Canva, Photoshop, and After Effects.',
+    icon: FaFilm,
+    judul: 'Motion & Graphic Design',
+    deskripsi: 'Visual assets, posters, social media content, and motion graphics with Canva, Photoshop, and After Effects.',
   },
 ]
 
 /* ===== Tab filter proyek ===== */
 const PROJECT_TABS = [
-  { id: 'all', label: 'All' },
   { id: 'web', label: 'Web Dev' },
   { id: 'design', label: 'Design Graphic' },
+  { id: 'motion', label: 'Motion Design' },
 ] as const
 type ProjectTab = (typeof PROJECT_TABS)[number]['id']
 
 export default function Home() {
-  const [tab, setTab] = useState<ProjectTab>('all')
+  const [tab, setTab] = useState<ProjectTab>('web')
   return (
     <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
       {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
@@ -183,7 +215,7 @@ export default function Home() {
       <Section id="projects">
         <SectionHeader eyebrow="Portfolio" title="Projects" />
 
-        {/* Tab filter: All / Web Dev / Design Graphic */}
+        {/* Tab filter: Web Dev / Design Graphic / Motion Design */}
         <motion.div variants={item} className="mt-6 flex flex-wrap gap-2">
           {PROJECT_TABS.map((t) => (
             <button
@@ -201,11 +233,16 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Web dev cards (grid) */}
-        {(tab === 'all' || tab === 'web') && (
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {PROJECTS.map((p) => (
-              <motion.div key={p.id} variants={item}>
+        {/* Web dev cards (grid) — initial/animate langsung, bukan variant parent */}
+        {tab === 'web' && (
+          <div key="web" className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {PROJECTS.map((p, i) => (
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.06 }}
+              >
                 <BentoCard className="flex h-full flex-col">
                   <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
                     <div className="bg-grid absolute inset-0" aria-hidden />
@@ -241,32 +278,19 @@ export default function Home() {
         )}
 
         {/* Design graphic cards (foto kiri, judul & deskripsi kanan) */}
-        {(tab === 'all' || tab === 'design') && (
-          <div className="mt-6 space-y-4">
-            {DESIGN_PROJECTS.map((p) => (
-              <motion.div key={p.id} variants={item}>
-                <BentoCard className="flex flex-col overflow-hidden sm:flex-row">
-                  <div className="relative h-44 shrink-0 sm:h-auto sm:w-56 md:w-64">
-                    <img
-                      src={p.gambar}
-                      alt={p.judul}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
-                    <h3 className="text-lg font-semibold leading-snug">{p.judul}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">{p.deskripsi}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {p.tech.map((t) => (
-                        <Badge key={t} tone="neutral">
-                          {t}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </BentoCard>
-              </motion.div>
+        {tab === 'design' && (
+          <div key="design" className="mt-6 space-y-4">
+            {DESIGN_PROJECTS.map((p, i) => (
+              <DesignRowCard key={p.id} p={p} delay={i * 0.06} />
+            ))}
+          </div>
+        )}
+
+        {/* Motion design cards (layout sama dengan design) */}
+        {tab === 'motion' && (
+          <div key="motion" className="mt-6 space-y-4">
+            {MOTION_PROJECTS.map((p, i) => (
+              <DesignRowCard key={p.id} p={p} delay={i * 0.06} />
             ))}
           </div>
         )}

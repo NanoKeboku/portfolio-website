@@ -6,9 +6,9 @@ export interface Project {
   judul: string
   deskripsi: string
   tech: string[]
-  kategori: 'web' | 'design'
+  kategori: 'web' | 'design' | 'motion'
   emoji?: string // visual placeholder (real thumbnails coming later)
-  gambar?: string // foto/thumbnail asli (dipakai layout design)
+  gambar?: string // foto/thumbnail asli (dipakai layout design/motion)
   url?: string
   repo?: string
   featured?: boolean
@@ -86,5 +86,36 @@ export const DESIGN_PROJECTS: Project[] = [
     tech: ['Photoshop', 'After Effects'],
     kategori: 'design',
     gambar: 'https://picsum.photos/seed/event-design/640/480',
+  },
+]
+
+/** Motion design projects — DUMMY (foto contoh, ganti dengan karya asli nanti). */
+export const MOTION_PROJECTS: Project[] = [
+  {
+    id: 'motion-logo',
+    judul: 'Logo Animation & Brand Motion',
+    deskripsi:
+      'Animasi logo dan identitas brand — logo reveal, morphing, dan micro-interaction untuk media digital.',
+    tech: ['After Effects', 'Photoshop'],
+    kategori: 'motion',
+    gambar: 'https://picsum.photos/seed/motion-logo/640/480',
+  },
+  {
+    id: 'motion-poster',
+    judul: 'Motion Poster & Video Bumper',
+    deskripsi:
+      'Poster bergerak dan bumper video untuk promosi acara serta produk di media sosial.',
+    tech: ['After Effects', 'Canva'],
+    kategori: 'motion',
+    gambar: 'https://picsum.photos/seed/motion-poster/640/480',
+  },
+  {
+    id: 'social-video',
+    judul: 'Social Media Video Content',
+    deskripsi:
+      'Video pendek dan animasi untuk konten Instagram/TikTok — motion graphics, editing, dan caption.',
+    tech: ['After Effects', 'Premiere'],
+    kategori: 'motion',
+    gambar: 'https://picsum.photos/seed/social-video/640/480',
   },
 ]

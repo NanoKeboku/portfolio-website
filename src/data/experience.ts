@@ -1,7 +1,10 @@
 /**
  * Experience & organization data — from Alhambra Ferdinando's CV.
  * Shared by Home (single-page) & About.
+ * Data dari CMS LeadsHub (sync-cms.mjs) → fallback statis lokal.
  */
+import { cmsData } from './cms.generated'
+
 export interface Experience {
   periode: string
   peran: string
@@ -10,16 +13,7 @@ export interface Experience {
   featured?: boolean
 }
 
-export const PENGALAMAN: Experience[] = [
-  // {
-  //   periode: 'Jul 2026 — Present',
-  //   peran: 'Vocational IT Teacher (TKJ)',
-  //   tempat: 'SMK Kristen Penabur Purworejo',
-  //   poin: [
-  //     'Teach 10th and 12th-grade students (Computer and Network Engineering) through weekly sessions.',
-  //     'Design and deliver learning materials on Basic Network Security, K3LH, and Technopreneurship to prepare students for industry standards.',
-  //   ],
-  // },
+export const STATIC_PENGALAMAN: Experience[] = [
   {
     periode: 'May 2026',
     peran: 'Web Designer',
@@ -41,7 +35,7 @@ export const PENGALAMAN: Experience[] = [
   },
 ]
 
-export const ORGANISASI: Experience[] = [
+export const STATIC_ORGANISASI: Experience[] = [
   {
     periode: 'Jun 2024 — Jun 2025',
     peran: 'Chairperson, HIMATEKNO',
@@ -54,3 +48,11 @@ export const ORGANISASI: Experience[] = [
     featured: true,
   },
 ]
+
+const cmsExp = cmsData?.experience
+
+export const PENGALAMAN: Experience[] =
+  cmsExp?.pengalaman?.length ? cmsExp.pengalaman : STATIC_PENGALAMAN
+
+export const ORGANISASI: Experience[] =
+  cmsExp?.organisasi?.length ? cmsExp.organisasi : STATIC_ORGANISASI

@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:cms": "node scripts/sync-cms.mjs",
+    "prebuild": "node scripts/sync-cms.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit",

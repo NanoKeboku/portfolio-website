@@ -1,5 +1,7 @@
 /**
  * Project data source — from CV & real development history.
+ * PROJECTS (web) dari CMS LeadsHub (sync-cms.mjs) → fallback statis lokal.
+ * DESIGN_PROJECTS & MOTION_PROJECTS tetap statis (placeholder coming-soon).
  */
 import moto1 from '../images/moto-1.webp'
 import moto2 from '../images/moto-2.webp'
@@ -9,6 +11,7 @@ import leadshub1 from '../images/leadshub.webp'
 import leadshub2 from '../images/leadshub 2.webp'
 import webBimble1 from '../images/web-bimble.webp'
 import webBimble2 from '../images/web-bimble-2.webp'
+import { cmsData, type CmsProject } from './cms.generated'
 
 export interface Project {
   id: string
@@ -23,8 +26,8 @@ export interface Project {
   featured?: boolean
 }
 
-/** Web development projects. */
-export const PROJECTS: Project[] = [
+/** Statis (fallback) — web development projects. */
+export const STATIC_PROJECTS: Project[] = [
   {
     id: 'moto-computer',
     judul: 'Moto Computer — IT Asset & Inventory Management',
@@ -110,5 +113,38 @@ export const MOTION_PROJECTS: Project[] = [
     tech: ['After Effects', 'Photoshop'],
     kategori: 'motion',
     gambar: ['https://picsum.photos/seed/motion-logo/640/480'],
-  }
+  },
 ]
+
+/** Resolusi gambar CMS (path "/images/x.webp") → asset lokal via Vite glob. */
+const imageGlob = import.meta.glob<string>('../images/*.webp', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+function resolveImages(paths: string[]): string[] {
+  return paths
+    .map((p) => {
+      const name = p.split('/').pop() ?? ''
+      return imageGlob[`../images/${name}`]
+    })
+    .filter((v): v is string => Boolean(v))
+}
+
+function fromCms(p: CmsProject): Project {
+  return {
+    id: p.id,
+    judul: p.judul,
+    deskripsi: p.deskripsi,
+    tech: p.tech,
+    kategori: p.kategori,
+    gambar: resolveImages(p.gambar),
+    url: p.url ?? undefined,
+    repo: p.repo ?? undefined,
+    featured: p.featured === 1,
+  }
+}
+
+export const PROJECTS: Project[] =
+  cmsData?.projects?.length ? cmsData.projects.map(fromCms) : STATIC_PROJECTS

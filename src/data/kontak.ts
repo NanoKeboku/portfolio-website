@@ -1,8 +1,10 @@
 /**
  * CONTACT — single source of truth for contact & social info.
- * Data from Alhambra Ferdinando's CV (2026-08-05).
+ * Data dari CMS LeadsHub (sync-cms.mjs) → fallback statis lokal.
  */
-export const KONTAK = {
+import { cmsData } from './cms.generated'
+
+export const STATIC_KONTAK = {
   nama: 'Alhambra Ferdinando',
   namaPendek: 'Alhambra',
   role: 'Web Developer & Visual Designer',
@@ -20,6 +22,11 @@ export const KONTAK = {
     portfolioLama: 'https://my-porto-alhambra.vercel.app',
   },
 } as const
+
+/** Kontak dari CMS (LeadsHub) kalau ada — merge ke atas data statis. */
+const CMS = cmsData?.kontak as Partial<typeof STATIC_KONTAK> | null
+
+export const KONTAK = CMS ? { ...STATIC_KONTAK, ...CMS } as typeof STATIC_KONTAK : STATIC_KONTAK
 
 export function waLink(pesan: string): string {
   const no = KONTAK.whatsapp.replace(/[^0-9]/g, '')

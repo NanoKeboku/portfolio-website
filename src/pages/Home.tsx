@@ -6,13 +6,12 @@
  */
 import { motion, type Variants } from 'framer-motion'
 import { useState, type ReactNode, type ElementType } from 'react'
-import { FaPalette, FaLaptopCode, FaFilm, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6'
+import { FaPalette, FaLaptopCode, FaFilm, FaArrowRight, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaLocationDot, FaClock } from 'react-icons/fa6'
 import BentoCard from '../components/ui/BentoCard'
 import Badge from '../components/ui/Badge'
+import Button from '../components/ui/Button'
 import ProjectCarousel from '../components/ui/ProjectCarousel'
 import ComingSoonCard from '../components/ui/ComingSoonCard'
-import MarqueeHero from '../components/ui/MarqueeHero'
-import FeaturedProject from '../components/ui/FeaturedProject'
 import { KONTAK } from '../data/kontak'
 import { PROJECTS } from '../data/projects'
 import { TECH_STACK, TOOLS_BUILD, PRODUCTIVITY_TOOLS } from '../data/skills'
@@ -104,15 +103,56 @@ export default function Home() {
     setForm((f) => ({ ...f, [key]: e.target.value }))
 
   return (
-    <div>
-      {/* ===== HERO MARQUEE (brutalist, full-width, scroll-reactive) ===== */}
-      <MarqueeHero />
+    <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
+      {/* ===== HERO (background + center: kalimat, nama, deskripsi, CTA) ===== */}
+      <motion.section
+        id="home"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="relative overflow-hidden rounded-3xl border border-line bg-surface/70 backdrop-blur-md"
+      >
+        <div
+          className="absolute inset-0"
+          aria-hidden
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(28,25,23,0.08), transparent 65%)',
+          }}
+        />
+        <div className="relative flex flex-col items-center px-6 py-20 text-center md:py-28">
+          <motion.p
+            variants={item}
+            className="rounded-full border border-line bg-surface/80 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted"
+          >
+            Visual Designer &amp; Web Developer
+          </motion.p>
+          <motion.h1
+            variants={item}
+            className="mt-6 text-4xl font-bold tracking-tight md:text-6xl"
+          >
+            {KONTAK.nama}
+          </motion.h1>
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
+          >
+            {KONTAK.tagline}
+          </motion.p>
+          <motion.div variants={item} className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <a href="#contact">
+              <Button>Get in Touch</Button>
+            </a>
+            <a href="#projects">
+              <Button variant="secondary">
+                View Projects <FaArrowRight className="ml-1.5 inline h-3 w-3" />
+              </Button>
+            </a>
+          </motion.div>
+        </div>
+      </motion.section>
 
-      <div className="mx-auto w-full max-w-6xl space-y-20 px-4 py-12 md:px-8 md:py-16">
-        {/* ===== FEATURED PROJECT (kartu tunggal di bawah marquee) ===== */}
-        <FeaturedProject />
-
-        {/* ===== ABOUT (short bio) ===== */}
+      {/* ===== ABOUT (short bio) ===== */}
       <Section id="about">
         <SectionHeader eyebrow="About" title="About Me" />
         <motion.div variants={item}>
@@ -144,8 +184,8 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===== PROYEK (selain featured — Moto tampil di kartu tunggal atas) ===== */}
-      <Section>
+      {/* ===== PROYEK ===== */}
+      <Section id="projects">
         <SectionHeader eyebrow="Portfolio" title="Latest  Projects" />
 
         {/* Tab filter: Web Dev / Design Graphic / Motion Design */}
@@ -168,8 +208,7 @@ export default function Home() {
         {/* Web dev cards (full-width + carousel foto) — initial/animate langsung */}
         {tab === 'web' && (
           <div key="web" className="mt-6 flex flex-col gap-6">
-            {/* Moto tampil di kartu featured (atas) — exclude by id, bukan flag featured (CMS bisa berubah) */}
-            {PROJECTS.filter((p) => p.id !== 'moto-computer').map((p, i) => (
+            {PROJECTS.map((p, i) => (
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 16 }}
@@ -437,7 +476,6 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      </div>
     </div>
   )
 }

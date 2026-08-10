@@ -88,26 +88,6 @@ body {
   background-size: 36px 36px;
 }
 
-/* ===== Marquee hero brutalist (full-width, kecepatan dikontrol JS via inline animationDuration) ===== */
-@keyframes marquee-hero-rtl {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee-hero {
-  overflow: hidden;
-}
-.marquee-hero-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-hero-rtl 22s linear infinite;
-  will-change: transform;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-hero-track {
-    animation: none;
-  }
-}
-
 /* ===== Marquee (label berjalan) ===== */
 .marquee {
   overflow: hidden;

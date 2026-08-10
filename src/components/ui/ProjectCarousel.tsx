@@ -11,11 +11,9 @@ interface ProjectCarouselProps {
   images: string[]
   alt: string
   className?: string
-  /** true = sudut tegas (brutalist), tanpa rounded-xl. */
-  squared?: boolean
 }
 
-export default function ProjectCarousel({ images, alt, className = '', squared = false }: ProjectCarouselProps) {
+export default function ProjectCarousel({ images, alt, className = '' }: ProjectCarouselProps) {
   const [index, setIndex] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -45,7 +43,7 @@ export default function ProjectCarousel({ images, alt, className = '', squared =
 
   return (
     <div
-      className={`group relative overflow-hidden ${squared ? 'rounded-none' : 'rounded-xl'} bg-surface-muted ${className}`}
+      className={`group relative overflow-hidden rounded-xl bg-surface-muted ${className}`}
       onMouseEnter={stop}
       onMouseLeave={() => {
         stop()

@@ -117,7 +117,7 @@ export const MOTION_PROJECTS: Project[] = [
 ]
 
 /** Resolusi gambar CMS (path "/images/x.webp") → asset lokal via Vite glob. */
-const imageGlob = import.meta.glob<string>('../images/*.webp', {
+const imageGlob = import.meta.glob<string>('../images/*.{webp,jpg,jpeg,png}', {
   eager: true,
   query: '?url',
   import: 'default',

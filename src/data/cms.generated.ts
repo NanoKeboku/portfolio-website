@@ -1,6 +1,6 @@
 /**
  * AUTO-GENERATED oleh scripts/sync-cms.mjs — JANGAN edit manual.
- * Sumber: https://travel-agency-leads.pages.dev/api/portfolio/export · 2026-08-10T09:41:35.484Z
+ * Sumber: https://travel-agency-leads.pages.dev/api/portfolio/export · 2026-08-10T09:49:31.882Z
  * Saat LeadsHub tidak terjangkau, cmsData = null → portfolio pakai data statis lokal.
  */
 export interface CmsSkills {
@@ -45,7 +45,7 @@ export const cmsData: CmsData = {
     "nama": "Alhambra Ferdinando",
     "role": "Web Developer & Visual Designer",
     "tagline": "Building modern, scalable website with React, Laravel, Tailwind CSS, and Wordpress. Experienced in custom web development, UI/UX Implementation, REST APIs, and lightweight automation for real-world business workflows.",
-    "email": "alhambra.only@gmail.com",
+    "email": "alhambra.nando@gmail.com",
     "whatsapp": "6285129976177",
     "lokasi": "Purworejo, Indonesia",
     "sosmed": {
@@ -183,5 +183,5 @@ export const cmsData: CmsData = {
     }
   ],
   "testimonials": [],
-  "fetchedAt": "2026-08-10T09:41:36.508Z"
+  "fetchedAt": "2026-08-10T09:49:32.923Z"
 };

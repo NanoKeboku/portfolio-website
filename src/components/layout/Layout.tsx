@@ -39,7 +39,7 @@ export default function Layout() {
       )}
 
       {/* ===== NAVBAR (glass effect) ===== */}
-      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/85 backdrop-blur-xl">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 md:px-8">
           <Link to="/" className="text-lg font-bold tracking-tight text-ink" onClick={() => setOpen(false)}>
             Alhambra<span className="text-accent">.</span>
